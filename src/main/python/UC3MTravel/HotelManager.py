@@ -33,3 +33,6 @@ class HotelManager:
 
         # Close the file
         return req
+    #de aquí a abajo es nuevo
+    def room_reservation(self, credit_card, name_surname, id_card, phone, room_type, arrival_date, num_days):
+#copiado de la pantalla de la profe
