@@ -1,5 +1,5 @@
 import unittest
-
+from UC3MTravel import HotelManagementException
 
 class TestHotelManager(unittest.TestCase):
     def test_something(self):
