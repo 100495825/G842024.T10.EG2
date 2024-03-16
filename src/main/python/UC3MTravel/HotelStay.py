@@ -1,16 +1,16 @@
 ''' Class HotelStay (GE2.2) '''
-from datetime import DATETIME
+from datetime import datetime
 
 import hashlib
 
 class HOTELSTAY():
-    def __init__( self, intIdCard, localizer, intNumdays, strRoomType ):
-        self.__alg = "SHA-256"
-        self.__type = roomtype
-        self.__idcard = intIdCard
-        self.__localizer = localizer
-        justnow = datetime.utcnow()
-        self.__arrival = justnow
+    def __init__( self, strIdCard, strLocalizer, intNumdays, strRoomType ):
+        self.__strAlg = "SHA-256"
+        self.__strRoomType = strRoomType
+        self.__strIdCard = strIdCard
+        self.__strLocalizer = strLocalizer
+        dateJustNow = datetime.utcnow()
+        self.__arrival = dateJustNow
         #timestamp is represented in seconds.miliseconds
         #to add the number of days we must express numdays in seconds
         self.__departure = self.__arrival + (intNumdays * 24 * 60 * 60)
