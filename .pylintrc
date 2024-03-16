@@ -152,18 +152,18 @@ class-attribute-naming-style=any
 # Naming style matching correct class constant names. Everything after _ is in camelCase
 class-const-naming-style=_[a-z]+(?:[A-Z][_a-zA-Z0-9]*)*$
 
-# Naming style matching correct variable names. Every variable must start with one of the following prefixes,
+#Naming style matching correct variable names, separated by a comma. Every variable must start with one of the following prefixes,
 #Everything after the variable must be written in camelCase
 variable-naming-prefix=(
-    int:   (int[a-z][A-Z]+)*$ |
-    bool:  (bool[a-z][A-Z]+)*$ |
-    str:   (str[a-z][A-Z]+)*$ |
-    lst:   (lst[a-z][A-Z]+)*$ |
-    dict:  (dict[a-z][A-Z]+)*$ |
-    tup:   (tup[a-z][A-Z]+)*$ |
-    date:  (date[a-z][A-Z]+)*$ |
-    cmplx: (cmplx[a-z][A-Z]+)*$ |
-    float: (float[a-z][A-Z]+)*$ |
+    int:   (int[a-z][A-Z]+)*$,
+    bool:  (bool[a-z][A-Z]+)*$,
+    str:   (str[a-z][A-Z]+)*$,
+    lst:   (lst[a-z][A-Z]+)*$,
+    dict:  (dict[a-z][A-Z]+)*$,
+    tup:   (tup[a-z][A-Z]+)*$,
+    date:  (date[a-z][A-Z]+)*$,
+    cmplx: (cmplx[a-z][A-Z]+)*$,
+    float: (float[a-z][A-Z]+)*$,
     set:   (set[a-z][A-Z]+)*$
 )
 
