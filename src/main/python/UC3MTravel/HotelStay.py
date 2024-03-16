@@ -22,13 +22,13 @@ class HOTELSTAY():
             ",departure:"+self.__dateDeparture+" }"
 
     @property
-    def idCard( self ):
+    def IDCARD( self ):
         """Property that represents the product_id of the patient"""
-        return self.__idcard
+        return self.__strIdCard
 
-    @idCard.setter
-    def icCard( self, value ):
-        self.__idcard = value
+    @IDCARD.setter
+    def IDCARD( self, strValue ):
+        self.__strIdCard = strValue
 
     @property
     def localizer( self ):
