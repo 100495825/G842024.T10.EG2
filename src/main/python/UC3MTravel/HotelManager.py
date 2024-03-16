@@ -1,3 +1,5 @@
+''' Class HotelManager (GE2.2) '''
+
 import json
 
 from .HotelManagementException import HOTELMANAGMENTEXCEPTION
