@@ -10,12 +10,12 @@ class HOTELSTAY():
         self.__strIdCard = strIdCard
         self.__strLocalizer = strLocalizer
         dateJustNow = datetime.utcnow()
-        self.__arrival = dateJustNow
+        self.__datArrival = dateJustNow
         #timestamp is represented in seconds.miliseconds
         #to add the number of days we must express numdays in seconds
-        self.__departure = self.__arrival + (intNumdays * 24 * 60 * 60)
+        self.__dateDeparture = self.__dateArrival + (intNumdays * 24 * 60 * 60)
 
-    def __signature_string( self ):
+    def __SIGNATURESTRING( self ):
         """Composes the string to be used for generating the key for the room"""
         return "{alg:" + self.__alg + ",typ:" + self.__type + ",localizer:" + \
             self.__localizer + ",arrival:" + self.__arrival + \
