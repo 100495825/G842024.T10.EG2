@@ -149,7 +149,7 @@ class-attribute-naming-style=any
 # with the set naming style.
 #class-attribute-rgx=
 
-# Naming style matching correct class constant names. Everything after _ is in camelCase
+# Naming style matching correct class constant names. Everything after _ is in lowercamelCase
 class-const-naming-style=_[a-z]+(?:[A-Z][_a-zA-Z0-9]*)*$
 
 # Regular expression matching correct class constant names. Overrides class-
