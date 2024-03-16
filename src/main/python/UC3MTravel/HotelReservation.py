@@ -1,9 +1,12 @@
 import hashlib
-import json
 from datetime import datetime
 
 class HotelReservation:
     def __init__(self, IDCARD, creditcardNumb, nAMeAndSURNAME, phonenumber, room_type,numdays):
+        """
+
+        :rtype: object
+        """
         self.__crEDITcardnumber = creditcardNumb
         self.__idcard = IDCARD
         justnow = datetime.utcnow()

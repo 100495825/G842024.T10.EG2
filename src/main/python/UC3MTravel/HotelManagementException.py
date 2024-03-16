@@ -7,7 +7,7 @@ class HOTELMANAGMENT(Exception):
     def MESSAGE(self):
         return self.__message
 
-    @strMessage.setter
+    @MESSAGE.setter
     def MESSAGE(self, strValue):
         self.__message = strValue
 
