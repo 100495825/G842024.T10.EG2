@@ -170,22 +170,22 @@ variable-naming-prefix=(
 # Regular expression matching correct class constant names. Overrides class-
 # const-naming-style. If left empty, class constant names will be checked with
 # the set naming style.
-#class-const-rgx=
+#class-const-rgx=_[a-z]+(?:[A-Z][_a-zA-Z0-9]*)*$
 
 # Naming style matching correct class names.
-class-naming-style=PascalCase
+class-naming-style=UPPER_CASE
 
 # Regular expression matching correct class names. Overrides class-naming-
 # style. If left empty, class names will be checked with the set naming style.
-#class-rgx=
+#class-rgx=UPPER_CASE
 
 # Naming style matching correct constant names.
-const-naming-style=UPPER_CASE
+const-naming-style=_[a-z]+(?:[A-Z][_a-zA-Z0-9]*)*$
 
 # Regular expression matching correct constant names. Overrides const-naming-
 # style. If left empty, constant names will be checked with the set naming
 # style.
-#const-rgx=
+#const-rgx=_[a-z]+(?:[A-Z][_a-zA-Z0-9]*)*$
 
 # Minimum line length for functions/classes that require docstrings, shorter
 # ones are exempt.
