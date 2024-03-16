@@ -1,4 +1,4 @@
-
+''' Class HotelReservation (GE2.2) '''
 import hashlib
 
 import json
@@ -10,7 +10,7 @@ class HOTELRESERVATION:
         self.__strCreditCardNum = strCreditCardNum
         self.__strIdCard = strIdCard
         justnow = datetime.utcnow()
-        self.__dateArrival = datetime.timestamp(justnow)
+        self.__dateArrival = datetime.timestamp( justnow )
         self.__strNameAndSurname = strNameAndSurname
         self.__strPhoneNumber = strPhoneNumber
         self.__strRoomType = strRoomType
