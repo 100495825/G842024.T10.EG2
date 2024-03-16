@@ -5,7 +5,7 @@ import json
 
 from datetime import datetime
 
-class HOTELRESERVATION:
+class HOTELRESERVATION():
     def __init__( self, strIdCard, strCreditCardNum, strNameAndSurname, strPhoneNumber, strRoomType, intNumDays ):
         self.__strCreditCardNum = strCreditCardNum
         self.__strIdCard = strIdCard
