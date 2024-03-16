@@ -152,20 +152,6 @@ class-attribute-naming-style=any
 # Naming style matching correct class constant names. Everything after _ is in camelCase
 class-const-naming-style=_[a-z]+(?:[A-Z][_a-zA-Z0-9]*)*$
 
-#Naming style matching correct variable names, separated by a comma. Every variable must start with one of the following prefixes,
-#Everything after the variable must be written in camelCase
-variable-naming-prefix=(
-    int:   (int[a-z][A-Z]+)*$,
-    bool:  (bool[a-z][A-Z]+)*$,
-    str:   (str[a-z][A-Z]+)*$,
-    lst:   (lst[a-z][A-Z]+)*$,
-    dict:  (dict[a-z][A-Z]+)*$,
-    tup:   (tup[a-z][A-Z]+)*$,
-    date:  (date[a-z][A-Z]+)*$,
-    cmplx: (cmplx[a-z][A-Z]+)*$,
-    float: (float[a-z][A-Z]+)*$,
-    set:   (set[a-z][A-Z]+)*$
-)
 
 # Regular expression matching correct class constant names. Overrides class-
 # const-naming-style. If left empty, class constant names will be checked with
@@ -192,7 +178,7 @@ const-naming-style=_[a-z]+(?:[A-Z][_a-zA-Z0-9]*)*$
 docstring-min-length=-1
 
 # Naming style matching correct function names.
-function-naming-style=snake_case
+function-naming-style=UPPER_CASE
 
 # Regular expression matching correct function names. Overrides function-
 # naming-style. If left empty, function names will be checked with the set
@@ -223,18 +209,18 @@ inlinevar-naming-style=any
 #inlinevar-rgx=
 
 # Naming style matching correct method names.
-method-naming-style=snake_case
+method-naming-style=UPPER_CASE
 
 # Regular expression matching correct method names. Overrides method-naming-
 # style. If left empty, method names will be checked with the set naming style.
-#method-rgx=
+#method-rgx=UPPER_CASE
 
 # Naming style matching correct module names.
-module-naming-style=snake_case
+module-naming-style=CamelCase
 
 # Regular expression matching correct module names. Overrides module-naming-
 # style. If left empty, module names will be checked with the set naming style.
-#module-rgx=
+#module-rgx=CamelCase
 
 # Colon-delimited sets of names that determine each other's naming style when
 # the name regexes allow several styles.
@@ -242,7 +228,7 @@ name-group=
 
 # Regular expression which should only match function or class names that do
 # not require a docstring.
-no-docstring-rgx=^_
+no-docstring-rgx=UPPER_CASE
 
 # List of decorators that produce properties, such as abc.abstractproperty. Add
 # to this list to register other decorators that produce valid properties.
@@ -258,13 +244,27 @@ property-classes=abc.abstractproperty
 #typevar-rgx=
 
 # Naming style matching correct variable names.
-variable-naming-style=snake_case
+variable-naming-style=camelCase
 
 # Regular expression matching correct variable names. Overrides variable-
 # naming-style. If left empty, variable names will be checked with the set
 # naming style.
-#variable-rgx=
+#variable-rgx= camelCase
 
+#Naming style matching correct variable names, separated by a comma. Every variable must start with one of the following prefixes,
+#Everything after the variable must be written in camelCase
+variable-naming-prefix=(
+    int:   (int[a-z][A-Z]+)*$,
+    bool:  (bool[a-z][A-Z]+)*$,
+    str:   (str[a-z][A-Z]+)*$,
+    lst:   (lst[a-z][A-Z]+)*$,
+    dict:  (dict[a-z][A-Z]+)*$,
+    tup:   (tup[a-z][A-Z]+)*$,
+    date:  (date[a-z][A-Z]+)*$,
+    cmplx: (cmplx[a-z][A-Z]+)*$,
+    float: (float[a-z][A-Z]+)*$,
+    set:   (set[a-z][A-Z]+)*$
+)
 
 [CLASSES]
 
@@ -300,7 +300,7 @@ exclude-too-few-public-methods=
 ignored-parents=
 
 # Maximum number of arguments for function / method.
-max-args=5
+max-args=10
 
 # Maximum number of attributes for a class (see R0902).
 max-attributes=7
