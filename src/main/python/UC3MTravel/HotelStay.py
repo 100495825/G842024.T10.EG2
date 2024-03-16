@@ -10,7 +10,7 @@ class HOTELSTAY():
         self.__strIdCard = strIdCard
         self.__strLocalizer = strLocalizer
         dateJustNow = datetime.utcnow()
-        self.__datArrival = dateJustNow
+        self.__dateArrival = dateJustNow
         #timestamp is represented in seconds.miliseconds
         #to add the number of days we must express numdays in seconds
         self.__dateDeparture = self.__dateArrival + (intNumdays * 24 * 60 * 60)
