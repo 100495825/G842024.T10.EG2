@@ -55,6 +55,6 @@ class HOTELSTAY():
         """Returns the issued at value"""
         return self.__dateDeparture
 
-    @departure.setter
-    def departure( self, value ):
-        self.__departure = value
+    @DEPARTURE.setter
+    def DEPARTURE( self, strValue ):
+        self.__dateDeparture = strValue
