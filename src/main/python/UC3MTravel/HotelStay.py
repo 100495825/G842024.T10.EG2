@@ -41,17 +41,17 @@ class HOTELSTAY():
         self.__strLocalizer = strValue
 
     @property
-    def arrival( self ):
+    def ARRIVAL( self ):
         """Property that represents the phone number of the client"""
-        return self.__arrival
+        return self.__dateArrival
 
     @property
-    def room_key( self ):
+    def ROOMKEY( self ):
         """Returns the sha256 signature of the date"""
-        return hashlib.sha256(self.__signature_string().encode()).hexdigest()
+        return hashlib.sha256(self.__SIGNATURESTRING.encode()).hexdigest()
 
     @property
-    def departure( self ):
+    def DEPARTURE( self ):
         """Returns the issued at value"""
         return self.__departure
 
