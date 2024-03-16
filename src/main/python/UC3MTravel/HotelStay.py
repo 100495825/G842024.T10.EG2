@@ -17,9 +17,9 @@ class HOTELSTAY():
 
     def __SIGNATURESTRING( self ):
         """Composes the string to be used for generating the key for the room"""
-        return "{alg:" + self.__alg + ",typ:" + self.__type + ",localizer:" + \
-            self.__localizer + ",arrival:" + self.__arrival + \
-            ",departure:" + self.__departure + "}"
+        return "{ alg:"+self.__strAlg+",typ:"+self.__strRoomType+",localizer:"+\
+            self.__strLocalizer+",arrival:"+self.__dateArrival+\
+            ",departure:"+self.__dateDeparture+" }"
 
     @property
     def idCard( self ):
