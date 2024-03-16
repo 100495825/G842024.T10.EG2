@@ -357,13 +357,19 @@ max-line-length=100
 # Maximum number of lines in a module.
 max-module-lines=1000
 
+#Maximum number of lines in a function.
+max-lines-per-function=25
+
+#Maximum number of lines in a method.
+max-lines-per-method=25
+
 # Allow the body of a class to be on the same line as the declaration if body
 # contains single statement.
 single-line-class-stmt=no
 
 # Allow the body of an if to be on the same line as the test if there is no
 # else.
-single-line-if-stmt=no
+single-line-if-stmt=yes
 
 
 [IMPORTS]
