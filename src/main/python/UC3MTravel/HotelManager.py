@@ -2,8 +2,8 @@ import json
 from .HotelManagementException import HotelManagementException
 from .HotelReservation import HotelReservation
 
-class HotelManager:
-    def __init__(self):
+class HOTELMANAGER:
+    def __init__( self ):
         pass
 
     def validatecreditcard( self, x ):
