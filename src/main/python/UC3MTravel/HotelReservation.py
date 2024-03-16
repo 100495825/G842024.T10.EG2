@@ -27,20 +27,20 @@ class HOTELRESERVATION:
                       "num_days": self.__intNumDays,
                       "room_type": self.__strRoomType,
                       }
-        return "HotelReservation:" + json_info.__str__()
+        return "HotelReservation:" + json_info.__str__( )
     @property
-    def CREDITCARD(self):
-        return self.__crEDITcardnumber
+    def CREDITCARD( self ):
+        return self.__strCreditCardNum
     @CREDITCARD.setter
-    def CREDITCARD(self, value):
-        self.__crEDITcardnumber = value
+    def CREDITCARD( self, strValue ):
+        self.__strCreditCardNum = strValue
 
     @property
-    def IDCARD(self):
-        return self.__idcard
+    def IDCARD( self ):
+        return self.__strIdCard
     @IDCARD.setter
-    def IDCARD(self, value):
-        self.__idcard = value
+    def IDCARD( self, strValue ):
+        self.__strIdCard = strValue
 
 
     @property
