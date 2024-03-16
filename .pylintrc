@@ -119,7 +119,7 @@ argument-naming-style=camelCase
 # Regular expression matching correct argument names. Overrides argument-
 # naming-style. If left empty, argument names will be checked with the set
 # naming style.
-#argument-rgx=
+#argument-rgx=camelCase
 
 # Naming style matching correct attribute names.
 attr-naming-style=camelCase
@@ -127,7 +127,7 @@ attr-naming-style=camelCase
 # Regular expression matching correct attribute names. Overrides attr-naming-
 # style. If left empty, attribute names will be checked with the set naming
 # style.
-#attr-rgx=
+#attr-rgx= camelCase
 
 # Bad variable names which should always be refused, separated by a comma.
 bad-names=foo,
