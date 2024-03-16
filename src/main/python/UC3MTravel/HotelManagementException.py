@@ -1,7 +1,7 @@
 class HOTELMANAGMENT( Exception ):
     def __init__( self, strMessage ):
         self.__strMessage = strMessage
-        super().__init__( self.strMessage )
+        super( ).__init__( self.strMessage )
 
     @property
     def MESSAGE( self ):
