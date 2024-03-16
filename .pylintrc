@@ -371,6 +371,17 @@ single-line-class-stmt=no
 # else.
 single-line-if-stmt=yes
 
+# Requires a blank space after any (, [, o {
+after-open-bracket-spacing=1
+
+# Requires a blank space before any ), ], }
+before-close-bracket-spacing=1
+
+#Requires no empty space before the following operators:
+no-space-before-operators=+,-,*,/,//,%, **
+
+#Requires no empty space after the following operators:
+no-space-after-operators=+,-,*,/,//,%, **
 
 [IMPORTS]
 
@@ -410,6 +421,8 @@ known-third-party=enchant
 # Couples of modules and preferred modules, separated by a comma.
 preferred-modules=
 
+# Spacing between inputs. At least one space between two inputs.
+import-spacing=1
 
 [LOGGING]
 
