@@ -6,27 +6,27 @@ import json
 from datetime import datetime
 
 class HOTELRESERVATION:
-    def __init__( self, strIdCard, strCreditCardNum, strNameAndSurname, strPhoneNumber, strRoomTyoe, intNumDays ):
+    def __init__( self, strIdCard, strCreditCardNum, strNameAndSurname, strPhoneNumber, strRoomType, intNumDays ):
         self.__strCreditCardNum = strCreditCardNum
         self.__strIdCard = strIdCard
         justnow = datetime.utcnow()
-        self.__ARRIVAL = datetime.timestamp(justnow)
+        self.__dateArrival = datetime.timestamp(justnow)
         self.__strNameAndSurname = strNameAndSurname
         self.__strPhoneNumber = strPhoneNumber
-        self.__strRoomTyoe = strRoomTyoe
+        self.__strRoomType = strRoomType
         self.__intNumDays = intNumDays
 
     def __str__( self ):
         """return a json string with the elements required to calculate the localizer"""
         #VERY IMPORTANT: JSON KEYS CANNOT BE RENAMED
-        json_info = {"id_card": self.__idcard,
-                     "name_surname": self.__NAME_SURNAME,
-                     "credit_card": self.__crEDITcardnumber,
-                     "phone_number:": self.__phonenumber,
-                     "arrival_date": self.__ARRIVAL,
-                     "num_days": self.__num_days,
-                     "room_type": self.__roomtype,
-                     }
+        json_info = { "id_card": self.__strIdCard,
+                      "name_surname": self.__strNameAndSurname,
+                      "credit_card": self.__strCreditCardNum,
+                      "phone_number:": self.__strPhoneNumber,
+                      "arrival_date": self.__dateArrival,
+                      "num_days": self.__intNumDays,
+                      "room_type": self.__strRoomType,
+                      }
         return "HotelReservation:" + json_info.__str__()
     @property
     def CREDITCARD(self):
