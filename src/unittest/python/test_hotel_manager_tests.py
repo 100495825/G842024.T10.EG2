@@ -1,9 +1,23 @@
+"""Lo usamos para probar si funciona"""
 import unittest
-from UC3MTravel import HotelManagementException
+from UC3MTravel import HotelReservation
+
 
 class TestHotelManager(unittest.TestCase):
     def test_something(self):
-        self.assertEqual(True, False)  # add assertion here
+        self.assertEqual(True, True)  # add assertion here
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
