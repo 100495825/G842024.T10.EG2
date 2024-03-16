@@ -1,4 +1,5 @@
 ''' Class HotelStay (GE2.2) '''
+
 from datetime import datetime
 
 import hashlib
@@ -31,13 +32,13 @@ class HOTELSTAY():
         self.__strIdCard = strValue
 
     @property
-    def localizer( self ):
+    def LOCALIZER( self ):
         """Property that represents the order_id"""
-        return self.__localizer
+        return self.__strLocalizer
 
-    @localizer.setter
-    def localizer( self, value ):
-        self.__localizer = value
+    @LOCALIZER.setter
+    def LOCALIZER( self, strValue ):
+        self.__strLocalizer = strValue
 
     @property
     def arrival( self ):
