@@ -17,7 +17,7 @@ class HOTELMANAGER:
 
         try:
             with open( strFi ) as f:
-                strDATA = json.load( f )
+                strData = json.load( f )
         except FileNotFoundError as e:
             raise HOTELMANAGMENTEXCEPTION("Wrong file or file path") from e
         except json.JSONDecodeError as e:
@@ -25,9 +25,9 @@ class HOTELMANAGER:
 
 
         try:
-            c = strData["CreditCard"]
-            p = strData["phoneNumber"]
-            req = HOTELRESERVATION(IDCARD="12345678Z",creditcardNumb=c,nAMeAndSURNAME="John Doe",phonenumber=p,room_type="single",numdays=3)
+            strC = strData["CreditCard"]
+            strP = strData["phoneNumber"]
+            req = HOTELRESERVATION(IDCARD="12345678Z",creditcardNumb=strC,nAMeAndSURNAME="John Doe",phonenumber=strP,room_type="single",numdays=3)
         except KeyError as e:
             raise HOTELMANAGMENTEXCEPTION("JSON Decode Error - Invalid JSON Key") from e
         if not self.VALIDATECREDITCARD(c):
