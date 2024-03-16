@@ -1,20 +1,22 @@
 
 import hashlib
+
 import json
+
 from datetime import datetime
 
-class HotelReservation:
-    def __init__(self, IDCARD, creditcardNumb, nAMeAndSURNAME, phonenumber, room_type,numdays):
-        self.__crEDITcardnumber = creditcardNumb
-        self.__idcard = IDCARD
+class HOTELRESERVATION:
+    def __init__( self, strIdCard, strCreditCardNum, strNameAndSurname, strPhoneNumber, strRoomTyoe, intNumDays ):
+        self.__strCreditCardNum = strCreditCardNum
+        self.__strIdCard = strIdCard
         justnow = datetime.utcnow()
         self.__ARRIVAL = datetime.timestamp(justnow)
-        self.__NAME_SURNAME = nAMeAndSURNAME
-        self.__phonenumber = phonenumber
-        self.__roomtype = room_type
-        self.__num_days = numdays
+        self.__strNameAndSurname = strNameAndSurname
+        self.__strPhoneNumber = strPhoneNumber
+        self.__strRoomTyoe = strRoomTyoe
+        self.__intNumDays = intNumDays
 
-    def __str__(self):
+    def __str__( self ):
         """return a json string with the elements required to calculate the localizer"""
         #VERY IMPORTANT: JSON KEYS CANNOT BE RENAMED
         json_info = {"id_card": self.__idcard,
