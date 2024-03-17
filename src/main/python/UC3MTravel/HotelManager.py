@@ -8,10 +8,10 @@ from .HotelReservation import HOTELRESERVATION
 
 
 class HOTELMANAGER:
-    def __init__( self ):
+    def __init__(self):
         pass
 
-    def VALIDATECREDITCARD(self, strCreditCardNum:str ) ->bool:
+    def VALIDATECREDITCARD(self, strCreditCardNum:str) ->bool:
             #Comprobar la longitud de la tarjeta de credito
             if (len(strCreditCardNum) != 16):
                 return False
@@ -32,21 +32,21 @@ class HOTELMANAGER:
 
             return intChecksum == intChecksumTeorica
 
-    def READDATAFROMJSON( self, strFi ):
+    def READDATAFROMJSON(self, strFi):
 
         try:
-            with open( strFi ) as f:
-                strData = json.load( f )
+            with open(strFi) as f:
+                strData = json.load(f)
         except FileNotFoundError as e:
             raise HOTELMANAGMENTEXCEPTION("Wrong file or file path") from e
         except json.JSONDecodeError as e:
             raise HOTELMANAGMENTEXCEPTION("JSON Decode Error - Wrong JSON Format") from e
 
         try:
-            strC = strData[ "CreditCard" ]
-            strP = strData[ "phoneNumber" ]
-            req = HOTELRESERVATION( IDCARD="12345678Z", creditcardNumb=strC, nAMeAndSURNAME="John Doe",
-                                    phonenumber=strP, room_type="single", numdays=3 )
+            strC = strData["CreditCard"]
+            strP = strData["phoneNumber"]
+            req = HOTELRESERVATION(IDCARD="12345678Z", creditcardNumb=strC, nAMeAndSURNAME="John Doe",
+                                    phonenumber=strP, room_type="single", numdays=3)
         except KeyError as e:
             raise HOTELMANAGMENTEXCEPTION("JSON Decode Error - Invalid JSON Key") from e
         if not self.VALIDATECREDITCARD(strC): raise HOTELMANAGMENTEXCEPTION("Invalid credit card number")
