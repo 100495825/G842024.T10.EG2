@@ -49,8 +49,8 @@ class HOTELMANAGER:
             req = HOTELRESERVATION(strIdCard="12345678Z", strCreditCardNum=strC, strNameAndSurname="John Doe",
                                     strPhoneNumber=strP, strRoomType="single", intNumDays=3)
         except KeyError as e:
-            raise HOTELMANAGMENTEXCEPTION("JSON Decode Error - Invalid JSON Key") from e
-        if not self.VALIDATECREDITCARD(strC): raise HOTELMANAGMENTEXCEPTION("Invalid credit card number")
+            raise HOTELMANAGEMENTEXCEPTION("JSON Decode Error - Invalid JSON Key") from e
+        if not self.VALIDATECREDITCARD(strC): raise HOTELMANAGEMENTEXCEPTION("Invalid credit card number")
 
         # Close the file
         return req
