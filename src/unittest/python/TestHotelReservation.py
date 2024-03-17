@@ -154,5 +154,94 @@ class TEST_VALID_ROOM(unittest.TestCase):
         for strRoom in tplInvalidas:
             self.assertFalse(VALIDAROOM(strRoom))
 
+def VALIDATE_PHONE_NUMBER(strPhoneNumber:str) -> bool:
+    if len(strPhoneNumber) != 9:
+        return False
+    intList = [int(intNum) for intNum in strPhoneNumber[:-1]]
+    for i in intList:
+        if i != (1, 2, 3, 4, 5, 6, 7, 8, 9, 0):
+            return False
+    return True
+
+def VALIDATE_DAYS(intDays) -> bool:
+    if type(intDays) == str or type(intDays) == float :
+        return False
+    if 0 < intDays < 11:
+        return True
+    return False
+class TEST_DAYS(unittest.TestCase):
+    #Comprobamos un valor valido
+    def TESTC1(self):
+        Days = 5
+        self.assertTrue(VALIDATE_DAYS(Days))
+    #Comprobamos un valor invalido float
+    def TESTCN1(self):
+        Days =5.6
+        self.assertTrue(VALIDATE_DAYS(Days))
+    #Comprobamos un valor invalido superior al valor maximo
+    def TESTCN2(self):
+        Days = 555
+        self.assertTrue(VALIDATE_DAYS(Days))
+    #Comprobamos un valor invalido string
+    def TESTCN3(self):
+        Days = "a"
+        self.assertTrue(VALIDATE_DAYS(Days))
+    #Comprobamos un valor limite valido
+    def TESTVL1(self):
+        Days = 10
+        self.assertTrue(VALIDATE_DAYS(Days))
+
+    # Comprobamos un valor limite valido
+    def TESTVL2(self):
+        Days = 9
+        self.assertTrue(VALIDATE_DAYS(Days))
+
+    # Comprobamos un valor limite valido
+    def TESTVL3(self):
+        Days = 1
+        self.assertTrue(VALIDATE_DAYS(Days))
+    # Comprobamos un valor limite valido
+    def TESTVL4(self):
+        Days = 2
+        self.assertTrue(VALIDATE_DAYS(Days))
+    #Comprobamos un valor limite invalido (superior)
+    def TESTVLN1(self):
+        Days = 11
+        self.assertTrue(VALIDATE_DAYS(Days))
+    #Comprobamos un valor limite invalido (inferior)
+    def TESTVLN2(self):
+        Days = 0
+        self.assertTrue(VALIDATE_DAYS(Days))
+class TEST_PHONE_NUMBER(unittest.TestCase):
+    #Comprobamos un caso valido
+    def TESTC1(self):
+        Phone_Number = "321490903"
+        self.assertTrue(VALIDATE_PHONE_NUMBER(Phone_Number))
+    #Comprobamos un valor limite invalido (8 numeros)
+    def TESTVLN1(self):
+        Phone_Number = "32149090"
+        self.assertTrue(VALIDATE_PHONE_NUMBER(Phone_Number))
+    #Comprobamos un valor limite invalido (10 numeros)
+    def TESTVLN2(self):
+        Phone_Number = "3214909038"
+        self.assertTrue(VALIDATE_PHONE_NUMBER(Phone_Number))
+    #Comprobamos un caso invalido con muchos numeros
+    def TESTCN1(self):
+        Phone_Number = "3214909088888888888887873"
+        self.assertTrue(VALIDATE_PHONE_NUMBER(Phone_Number))
+    #Comprobamos un caso invalido sin ningun numero
+    def TESTCN2(self):
+        Phone_Number = ""
+        self.assertTrue(VALIDATE_PHONE_NUMBER(Phone_Number))
+    #Comprobamos un caso invalido con letras y numeros
+    def TESTCN3(self):
+        Phone_Number = "321POL903"
+        self.assertTrue(VALIDATE_PHONE_NUMBER(Phone_Number))
+
+    # Comprobamos un caso invalido con letras
+    def TESTCN4(self):
+        Phone_Number = "ornriookp"
+        self.assertTrue(VALIDATE_PHONE_NUMBER(Phone_Number))
+
 if __name__ == '__main__':
     unittest.main()
