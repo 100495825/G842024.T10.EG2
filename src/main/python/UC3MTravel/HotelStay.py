@@ -1,5 +1,5 @@
 ''' Class HotelStay (GE2.2) '''
-from datetime import datetime
+ºfrom datetime import datetime
 
 import hashlib
 
