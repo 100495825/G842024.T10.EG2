@@ -114,20 +114,20 @@ unsafe-load-any-extension=no
 [BASIC]
 
 # Naming style matching correct argument names.
-argument-naming-style=camelCase
+argument-naming-style=snake_case
 
 # Regular expression matching correct argument names. Overrides argument-
 # naming-style. If left empty, argument names will be checked with the set
 # naming style.
-#argument-rgx=camelCase
+argument-rgx=(int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
 
 # Naming style matching correct attribute names.
-attr-naming-style=camelCase
+#attr-naming-style=snake_case
 
 # Regular expression matching correct attribute names. Overrides attr-naming-
 # style. If left empty, attribute names will be checked with the set naming
 # style.
-#attr-rgx=camelCase
+attr-rgx=(int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
 
 # Bad variable names which should always be refused, separated by a comma.
 bad-names=foo,
@@ -142,36 +142,35 @@ bad-names=foo,
 bad-names-rgxs=
 
 # Naming style matching correct class attribute names.
-class-attribute-naming-style=any
+#class-attribute-naming-style=any
 
 # Regular expression matching correct class attribute names. Overrides class-
 # attribute-naming-style. If left empty, class attribute names will be checked
 # with the set naming style.
-#class-attribute-rgx= camelCase
+class-attribute-rgx= (int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
 
-# Naming style matching correct class constant names. Everything after _ is in camelCase
-class-const-naming-style=_[a-z]+(?:[A-Z][_a-zA-Z0-9]*)*$
-
+# Naming style matching correct class constant names.
+#class-const-naming-style=UPPER_CASE
 
 # Regular expression matching correct class constant names. Overrides class-
 # const-naming-style. If left empty, class constant names will be checked with
 # the set naming style.
-#class-const-rgx=_[a-z]+(?:[A-Z][_a-zA-Z0-9]*)*$
+class-const-rgx=(int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
 
 # Naming style matching correct class names.
 class-naming-style=UPPER_CASE
 
 # Regular expression matching correct class names. Overrides class-naming-
 # style. If left empty, class names will be checked with the set naming style.
-#class-rgx=UPPER_CASE
+#class-rgx=
 
 # Naming style matching correct constant names.
-const-naming-style=_[a-z]+(?:[A-Z][_a-zA-Z0-9]*)*$
+#const-naming-style=UPPER_CASE
 
 # Regular expression matching correct constant names. Overrides const-naming-
 # style. If left empty, constant names will be checked with the set naming
 # style.
-#const-rgx=_[a-z]+(?:[A-Z][_a-zA-Z0-9]*)*$
+const-rgx=(_[a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
 
 # Minimum line length for functions/classes that require docstrings, shorter
 # ones are exempt.
@@ -213,14 +212,14 @@ method-naming-style=UPPER_CASE
 
 # Regular expression matching correct method names. Overrides method-naming-
 # style. If left empty, method names will be checked with the set naming style.
-#method-rgx=UPPER_CASE
+#method-rgx=
 
 # Naming style matching correct module names.
-module-naming-style=snake_case
+module-naming-style=camelCase
 
 # Regular expression matching correct module names. Overrides module-naming-
 # style. If left empty, module names will be checked with the set naming style.
-#module-rgx=CamelCase
+#module-rgx=
 
 # Colon-delimited sets of names that determine each other's naming style when
 # the name regexes allow several styles.
@@ -228,7 +227,7 @@ name-group=
 
 # Regular expression which should only match function or class names that do
 # not require a docstring.
-no-docstring-rgx=UPPER_CASE
+no-docstring-rgx=^_
 
 # List of decorators that produce properties, such as abc.abstractproperty. Add
 # to this list to register other decorators that produce valid properties.
@@ -244,27 +243,13 @@ property-classes=abc.abstractproperty
 #typevar-rgx=
 
 # Naming style matching correct variable names.
-variable-naming-style=camelCase
+#variable-naming-style=snake_case
 
 # Regular expression matching correct variable names. Overrides variable-
 # naming-style. If left empty, variable names will be checked with the set
 # naming style.
-#variable-rgx= camelCase
+variable-rgx=(int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
 
-#Naming style matching correct variable names, separated by a comma. Every variable must start with one of the following prefixes,
-#Everything after the variable must be written in camelCase
-variable-naming-prefix=(
-    int:   (int[a-z][A-Z]+)*$,
-    bool:  (bool[a-z][A-Z]+)*$,
-    str:   (str[a-z][A-Z]+)*$,
-    lst:   (lst[a-z][A-Z]+)*$,
-    dict:  (dict[a-z][A-Z]+)*$,
-    tup:   (tup[a-z][A-Z]+)*$,
-    date:  (date[a-z][A-Z]+)*$,
-    cmplx: (cmplx[a-z][A-Z]+)*$,
-    float: (float[a-z][A-Z]+)*$,
-    set:   (set[a-z][A-Z]+)*$
-)
 
 [CLASSES]
 
@@ -357,12 +342,6 @@ max-line-length=120
 # Maximum number of lines in a module.
 max-module-lines=1000
 
-#Maximum number of lines in a function.
-max-lines-per-function=25
-
-#Maximum number of lines in a method.
-max-lines-per-method=25
-
 # Allow the body of a class to be on the same line as the declaration if body
 # contains single statement.
 single-line-class-stmt=no
@@ -371,17 +350,8 @@ single-line-class-stmt=no
 # else.
 single-line-if-stmt=yes
 
-# Requires a blank space after any (, [, o {
-after-open-bracket-spacing=1
-
-# Requires a blank space before any ), ], }
-before-close-bracket-spacing=1
-
-#Requires no empty space before the following operators:
-no-space-before-operators=+,-,*,/,//,%, **
-
-#Requires no empty space after the following operators:
-no-space-after-operators=+,-,*,/,//,%, **
+#Impede spaces around operators
+bad-whitespace=operators
 
 [IMPORTS]
 
@@ -421,8 +391,6 @@ known-third-party=enchant
 # Couples of modules and preferred modules, separated by a comma.
 preferred-modules=
 
-# Spacing between inputs. At least one space between two inputs.
-import-spacing=1
 
 [LOGGING]
 
