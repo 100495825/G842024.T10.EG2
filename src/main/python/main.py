@@ -2,9 +2,11 @@
 #IN GUIDED EXERCISE 2.2, TESTING MUST BE PERFORMED USING UNITTESTS.
 from UC3MTravel import HotelManager
 
+"""
+from HotelManager import HOTELMANAGER
 
 def main( ):
-    mng = HotelManager()
+    mng = HOTELMANAGER()
     res = mng.ReaddatafromJSOn("test.json")
     strRes = res.__str__()
     print(strRes)
@@ -13,3 +15,4 @@ def main( ):
 
 if __name__ == "__main__":
     main()
+"""
