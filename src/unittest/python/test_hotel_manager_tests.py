@@ -1,4 +1,5 @@
 import unittest
+from UC3MTravel import HotelManager
 
 
 class TestHotelManager(unittest.TestCase):
