@@ -103,7 +103,7 @@ class TEST_VALID_NAME_AND_SURNAME(unittest.TestCase):
 
     def TEST_MIN_NAME_LENGTH(self):
         #Comprobamos un nombre valido que esta en el limite inferior
-        strNameAndSurname = "Ana Gonzalez"
+        strNameAndSurname = "Nora Lopez"
         self.assertTrue(VALIDATENAMESURNAME(strNameAndSurname))
     def TEST_NUMBERS_IN_NAME(self):
         #Comprobamos si hay numeros en el nombre
