@@ -119,7 +119,7 @@ argument-naming-style=snake_case
 # Regular expression matching correct argument names. Overrides argument-
 # naming-style. If left empty, argument names will be checked with the set
 # naming style.
-argument-rgx=(int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
+argument-rgx=(self|int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
 
 # Naming style matching correct attribute names.
 #attr-naming-style=snake_case
@@ -127,7 +127,7 @@ argument-rgx=(int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d
 # Regular expression matching correct attribute names. Overrides attr-naming-
 # style. If left empty, attribute names will be checked with the set naming
 # style.
-attr-rgx=(int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
+attr-rgx=(self|int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
 
 # Bad variable names which should always be refused, separated by a comma.
 bad-names=foo,
@@ -147,7 +147,7 @@ bad-names-rgxs=
 # Regular expression matching correct class attribute names. Overrides class-
 # attribute-naming-style. If left empty, class attribute names will be checked
 # with the set naming style.
-class-attribute-rgx= (int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
+class-attribute-rgx= (self|int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
 
 # Naming style matching correct class constant names.
 #class-const-naming-style=UPPER_CASE
@@ -155,7 +155,7 @@ class-attribute-rgx= (int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-
 # Regular expression matching correct class constant names. Overrides class-
 # const-naming-style. If left empty, class constant names will be checked with
 # the set naming style.
-class-const-rgx=(int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
+class-const-rgx=(_[a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
 
 # Naming style matching correct class names.
 class-naming-style=UPPER_CASE
@@ -248,7 +248,7 @@ property-classes=abc.abstractproperty
 # Regular expression matching correct variable names. Overrides variable-
 # naming-style. If left empty, variable names will be checked with the set
 # naming style.
-variable-rgx=(int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
+variable-rgx=(self|int|str|lst|dict|tup|date|cmplx|float|set|any)([A-Z][a-z0-9]+)((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?
 
 
 [CLASSES]
