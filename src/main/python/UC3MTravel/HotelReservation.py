@@ -1,8 +1,6 @@
 ''' Class HotelReservation (GE2.2) '''
 import hashlib
 
-import json
-
 from datetime import datetime
 
 class HOTELRESERVATION:

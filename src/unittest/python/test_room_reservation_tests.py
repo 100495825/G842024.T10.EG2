@@ -9,9 +9,7 @@ class TestsReservation(unittest.TestCase):
         file_store = str(Path.home()) + "/PycharmProjects/G842024.T10.EG2/test.json"
         if os.path.isfile(file_store):
             os.remove(file_store)
-        value = HotelReservation(creditcardNumb= "5105105105105100", nAMeAndSURNAME= "Juan Martin",
-                                          IDCARD= "12345678P", phonenumber= "666765675", room_type= "Single",
-                                          numdays= "9")
+
         with open(file_store,"r", encoding="utf-8", newline="" ) as file:
             data_list = json.load(file)
         found = False

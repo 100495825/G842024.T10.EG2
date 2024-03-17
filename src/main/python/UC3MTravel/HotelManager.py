@@ -39,9 +39,9 @@ class HOTELMANAGER:
             with open(strFi) as f:
                 strData = json.load(f)
         except FileNotFoundError as e:
-            raise HOTELMANAGMENTEXCEPTION("Wrong file or file path") from e
+            raise HOTELMANAGEMENTEXCEPTION("Wrong file or file path") from e
         except json.JSONDecodeError as e:
-            raise HOTELMANAGMENTEXCEPTION("JSON Decode Error - Wrong JSON Format") from e
+            raise HOTELMANAGEMENTEXCEPTION("JSON Decode Error - Wrong JSON Format") from e
 
         try:
             strC = strData["CreditCard"]
