@@ -41,6 +41,24 @@ def VALIDATEDATEFORMAT(dateArrival)-> bool:
     strValidFormat = re.match(r'\d{2}/\d{2}/\d{4}', dateArrival)
     return strValidFormat is not None
 
+
+def VALIDAID(strId):
+    intNumero = strId[:-1]
+    strLetra = strId[-1].upper()
+    strLetras = 'TRWAGMYFPDXBNJZSQVHLCKE'
+    intIndex = int(intNumero) % 23
+    if len(strId)!=9:
+        return False
+    elif not intNumero.isdigit():
+        return False
+    return strLetra == strLetras[intIndex]
+
+
+def VALIDAROOM(strRoom):
+    tplValidas = ["single", "double", "suite"]
+    return strRoom.lower() in tplValidas
+
+
 class TEST_VALID_CREDIT_CARD(unittest.TestCase):
     def TEST_VALID_CARD(self):
         strCard = "4188202133102069"
@@ -107,3 +125,30 @@ class TEST_VALID_ARRIVAL_DATE(unittest.TestCase):
         #Comprobamos que cumple el formato adecuado
         dateArrival = datetime.utcnow()
         self.assertTrue(VALIDATEDATEFORMAT(dateArrival))
+
+class TEST_VALID_ID(unittest.TestCase):
+    def TEST_VALID_ID(self):
+        strId="12345678Z"
+        self.assertTrue(VALIDAID(strId))
+    def TEST_INVALID_LENGTH_ID(self):
+        strId="1234567L"
+        self.assertFalse(VALIDAID(strId))
+    def TEST_INVALID_NUMBER_ID(self):
+        strId="123a45678Z"
+        self.assertFalse(VALIDAID(strId))
+    def TEST_INVALID_LETTER_ID(self):
+        strId="12345678P"
+        self.assertFalse(VALIDAID(strId))
+
+class TEST_VALID_ROOM(unittest.TestCase):
+    def TEST_VALID_ROOM(self):
+        tplValidas = ["single", "double", "suite"]
+        for strRoom in tplValidas:
+            self.assertTrue(VALIDAROOM(strRoom))
+    def TEST_INVALID_ROOM(self):
+        tplInvalidas = ["singular", "doble", "suittee"]
+        for strRoom in tplInvalidas:
+            self.assertFalse(VALIDAROOM(strRoom))
+
+if __name__ == '__main__':
+    unittest.main()
