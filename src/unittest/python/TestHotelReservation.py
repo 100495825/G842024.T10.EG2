@@ -7,21 +7,25 @@ def  VALIDATECREDITCARD(strCreditCardNum) ->bool:
     #Comprobar la longitud de la tarjeta de credito
     if len(strCreditCardNum) != 16:
         return False
-    intChecksum = int(strCreditCardNum[-1])
-    #Metemos los numeros en una lista
-    lstNumeros = [int(intNum) for intNum in strCreditCardNum[:-1]]
+    for char in strCreditCardNum:
+        if char.isdigit:
+            intChecksum = int(strCreditCardNum[-1])
+            #Metemos los numeros en una lista
+            lstNumeros = [int(intNum) for intNum in strCreditCardNum[:-1]]
 
-    # Duplicamos los numeros en las posiciones pares empezando por 1
-    lstNumeros = [lstNumeros[i] * 2 if i % 2 == 0 else lstNumeros[i] for i in range(len(lstNumeros))]
+            # Duplicamos los numeros en las posiciones pares empezando por 1
+            lstNumeros = [lstNumeros[i] * 2 if i % 2 == 0 else lstNumeros[i] for i in range(len(lstNumeros))]
 
-    # Sumamos los digitos de los numeros mayores a 9
-    lstNumeros = [sum([int(num) for num in str(lstNumeros[i])]) if lstNumeros[i] > 9 else lstNumeros[i] for i in range(len(lstNumeros))]
+            # Sumamos los digitos de los numeros mayores a 9
+            lstNumeros = [sum([int(num) for num in str(lstNumeros[i])]) if lstNumeros[i] > 9 else lstNumeros[i] for i in range(len(lstNumeros))]
 
-    # Sumamos todos los numeros y calculamos el checksum teorico
-    intSuma = sum(lstNumeros)
-    intChecksumTeorica = intSuma * 9 % 10
+            # Sumamos todos los numeros y calculamos el checksum teorico
+            intSuma = sum(lstNumeros)
+            intChecksumTeorica = intSuma * 9 % 10
 
-    return intChecksum == intChecksumTeorica
+            return intChecksum == intChecksumTeorica
+        else:
+            return False
 
 
 
@@ -61,7 +65,7 @@ def VALIDAROOM(strRoom):
 
 class TEST_VALID_CREDIT_CARD(unittest.TestCase):
     def TEST_VALID_CARD(self):
-        strCard = "4188202133102069"
+        strCard = "5105105105105100"
         self.assertTrue(VALIDATECREDITCARD(strCard))
 
     def TEST_INVALID_CARD(self):
