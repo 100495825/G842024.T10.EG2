@@ -1,4 +1,5 @@
 import unittest
+from .HotelManager import HOTELMANAGER
 
 
 class TestHotelManager(unittest.TestCase):
@@ -8,3 +9,4 @@ class TestHotelManager(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+    #copiado de
