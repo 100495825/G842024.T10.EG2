@@ -32,6 +32,23 @@ class HOTELRESERVATION:
     @CREDITCARD.setter
     def CREDITCARD(self, strValue):
         self.__strCreditCardNum = strValue
+    @property
+    def DAYS(self):
+        return self.__intNumDays
+
+    @DAYS.setter
+    def DAYS(self, strValue):
+        self.__intNumDays = strValue
+
+    @property
+    def PHONE_NUMBER(self):
+        return self.__intNumDays
+
+    @PHONE_NUMBER.setter
+    def PHONE_NUMBER(self, strValue):
+        self.__strPhoneNumber = strValue
+
+
 
     @property
     def IDCARD(self):
