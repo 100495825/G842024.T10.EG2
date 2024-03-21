@@ -107,4 +107,3 @@ class TEST_VALID_ARRIVAL_DATE(unittest.TestCase):
         #Comprobamos que cumple el formato adecuado
         dateArrival = datetime.utcnow()
         self.assertTrue(VALIDATEDATEFORMAT(dateArrival))
-        r
