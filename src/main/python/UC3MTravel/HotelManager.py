@@ -32,6 +32,22 @@ class HOTELMANAGER:
         intChecksumTeorica = intSuma * 9 % 10
 
         return intChecksum == intChecksumTeorica
+    def VALIDATE_PHONE_NUMBER(self, strPhoneNumber:str) -> bool:
+        if len(strPhoneNumber) != 9:
+            return False
+        intList = [int(intNum) for intNum in strPhoneNumber[:-1]]
+        for i in intList:
+            if i != (1, 2, 3, 4, 5, 6, 7, 8, 9, 0):
+                return False
+        return True
+
+    def VALIDATE_DAYS(self, intDays) -> bool:
+        if type(intDays) == str:
+            return False
+        if 0 < intDays < 11:
+            return True
+        return False
+
 
     def READDATAFROMJSON(self, strFi):
 
@@ -39,9 +55,9 @@ class HOTELMANAGER:
             with open(strFi) as f:
                 strData = json.load(f)
         except FileNotFoundError as e:
-            raise HOTELMANAGMENTEXCEPTION("Wrong file or file path") from e
+            raise HOTELMANAGEMENTEXCEPTION("Wrong file or file path") from e
         except json.JSONDecodeError as e:
-            raise HOTELMANAGMENTEXCEPTION("JSON Decode Error - Wrong JSON Format") from e
+            raise HOTELMANAGEMENTEXCEPTION("JSON Decode Error - Wrong JSON Format") from e
 
         try:
             strC = strData["CreditCard"]
