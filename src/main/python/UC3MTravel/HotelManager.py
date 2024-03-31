@@ -109,3 +109,32 @@ class HOTELMANAGER:
 
         # Close the file
         return req
+    #No se si lo siguiente está correcto
+    @staticmethod
+    def valida_id(id):
+        """Devuelve True si el id entregado es válido, sino False"""
+        intId = id[:-1]
+        if not isinstance(id, str) or len(id) != 9:
+            return False
+        try:
+            int(intId)
+        except ValueError:
+            return False
+        strLetras = 'TRWAGMYFPDXBNJZSQVHLCKE'
+        intIndex = int(intId) % 23
+        return id[-1].upper == strLetras[intIndex]
+
+    @staticmethod
+    def valida_room(strRoom):
+        """Devuelve True si el tipo de habitación es válido, sino False"""
+        if not isinstance(strRoom, str):
+            return False
+        if strRoom.lower not in ("single", "double", "suite"):
+            return False
+        return True
+
+    def room_reservation(self, strIdCard, strCreditCardNum, strNameAndSurname, strPhoneNumber, strRoomType, intNumDays)
+        if not self.valida_id(strIdCard):
+            raise HotelManagerException("ID no valido")
+        if not self.valida_room(strRoomType):
+            raise HotelManagerException("Tipo de habitación no válido")
