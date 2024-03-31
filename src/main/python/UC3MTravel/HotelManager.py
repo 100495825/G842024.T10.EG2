@@ -61,29 +61,29 @@ class HOTELMANAGER:
         strLetras = 'TRWAGMYFPDXBNJZSQVHLCKE'
         intIndex = int(intId) % 23
         return id[-1].upper == strLetras[intIndex]
-    def VALIDATE_ROOM(strRoom):
+    def VALIDATE_ROOM_TYPE(strRoom):
         """Devuelve True si el tipo de habitación es válido, sino False"""
         if not isinstance(strRoom, str):
             return False
         if strRoom.lower not in ("single", "double", "suite"):
             return False
         return True
-    def REGISTER_RESERVATION(self, strCreditCard, strId_Card, strNameSurname, strPhoneNumber, strRoomType, intNumDays):
+    def REGISTER_RESERVATION(self, strCreditCard, strIdCard, strNameSurname, strPhoneNumber, strRoomType, intNumDays):
         if not self.VALIDATECREDITCARD(strCreditCard):
             raise HOTELMANAGEMENTEXCEPTION("Creditcard not valid")
-        if not self.VALIDATEID(strId_Card):
+        if not self.VALIDATE_ID(strIdCard):
             raise HOTELMANAGEMENTEXCEPTION("ID not valid")
         if not self.VALIDATENAMEANDSURNAME(strNameSurname):
             raise HOTELMANAGEMENTEXCEPTION("Name not valid")
         if not self.VALIDATE_PHONE_NUMBER(strPhoneNumber):
             raise HOTELMANAGEMENTEXCEPTION("Phone number not valid")
-        if not self.ROOMTYPE(strRoomType):
+        if not self.VALIDATE_ROOM_TYPE(strRoomType):
             raise HOTELMANAGEMENTEXCEPTION("Room type not valid")
         if not self.VALIDATE_DAYS(intNumDays):
             raise HOTELMANAGEMENTEXCEPTION("Number of days not valid")
         file_store = str(Path.home())
         file_store += "/PycharmProjects/G842024.T10.EG2/src/JSONfiles/storeReserves.json"
-        my_management = HOTELRESERVATION(strId_Card, strCreditCard, strNameSurname, strPhoneNumber, strRoomType,
+        my_management = HOTELRESERVATION(strIdCard, strCreditCard, strNameSurname, strPhoneNumber, strRoomType,
                                          intNumDays)
         try:
             # Opens the json file and load the data to a list
@@ -128,12 +128,3 @@ class HOTELMANAGER:
 
         # Close the file
         return req
-    #No se si lo siguiente está correcto
-
-
-
-    def room_reservation(self, strIdCard, strCreditCardNum, strNameAndSurname, strPhoneNumber, strRoomType, intNumDays)
-        if not self.VALIDATE_ID(strIdCard):
-            raise HotelManagerException("ID no valido")
-        if not self.VALIDATE_ROOM(strRoomType):
-            raise HotelManagerException("Tipo de habitación no válido")
