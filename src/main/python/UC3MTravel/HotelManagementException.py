@@ -1,5 +1,5 @@
 ''' Class HotelManagementException. (GE2.2) '''
-class HOTELMANAGEMENTEXCEPTION(Exception):
+class HotelManagementException(Exception):
     def __init__(self, strMessage):
         self.__strMessage = strMessage
 

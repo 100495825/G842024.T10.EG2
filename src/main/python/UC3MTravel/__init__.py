@@ -1,3 +1,5 @@
 ''' __init__.py (GE2.2) '''
-from .HotelManagementException import HOTELMANAGEMENTEXCEPTION
-from .HotelManager import HOTELMANAGER
+from .HotelReservation import HOTELRESERVATION
+from .HotelManager import HotelManager
+from .HotelManagementException import HotelManagementException
+

@@ -2,13 +2,13 @@
 
 import json
 
-from .HotelManagementException import HOTELMANAGEMENTEXCEPTION
+from .HotelManagementException import HotelManagementException
 
 from .HotelReservation import HOTELRESERVATION
 from pathlib import Path
 
 
-class HOTELMANAGER:
+class HotelManager:
     """Class HotelManager"""
     def __init__(self):
         pass
@@ -49,7 +49,7 @@ class HOTELMANAGER:
         if 0 < intDays < 11:
             return True
         return False
-    def VALIDATE_ID(id):
+    def VALIDATE_ID(self, id):
         """Devuelve True si el id entregado es válido, sino False"""
         intId = id[:-1]
         if not isinstance(id, str) or len(id) != 9:
@@ -60,8 +60,8 @@ class HOTELMANAGER:
             return False
         strLetras = 'TRWAGMYFPDXBNJZSQVHLCKE'
         intIndex = int(intId) % 23
-        return id[-1].upper == strLetras[intIndex]
-    def VALIDATE_ROOM_TYPE(strRoom):
+        return id[-1].upper() == strLetras[intIndex]
+    def VALIDATE_ROOM_TYPE(self, strRoom):
         """Devuelve True si el tipo de habitación es válido, sino False"""
         if not isinstance(strRoom, str):
             return False
@@ -70,17 +70,17 @@ class HOTELMANAGER:
         return True
     def REGISTER_RESERVATION(self, strCreditCard, strIdCard, strNameSurname, strPhoneNumber, strRoomType, intNumDays):
         if not self.VALIDATECREDITCARD(strCreditCard):
-            raise HOTELMANAGEMENTEXCEPTION("Creditcard not valid")
+            raise HotelManagementException("Creditcard not valid")
         if not self.VALIDATE_ID(strIdCard):
-            raise HOTELMANAGEMENTEXCEPTION("ID not valid")
+            raise HotelManagementException("ID not valid")
         if not self.VALIDATENAMEANDSURNAME(strNameSurname):
-            raise HOTELMANAGEMENTEXCEPTION("Name not valid")
+            raise HotelManagementException("Name not valid")
         if not self.VALIDATE_PHONE_NUMBER(strPhoneNumber):
-            raise HOTELMANAGEMENTEXCEPTION("Phone number not valid")
+            raise HotelManagementException("Phone number not valid")
         if not self.VALIDATE_ROOM_TYPE(strRoomType):
-            raise HOTELMANAGEMENTEXCEPTION("Room type not valid")
+            raise HotelManagementException("Room type not valid")
         if not self.VALIDATE_DAYS(intNumDays):
-            raise HOTELMANAGEMENTEXCEPTION("Number of days not valid")
+            raise HotelManagementException("Number of days not valid")
         file_store = str(Path.home())
         file_store += "/PycharmProjects/G842024.T10.EG2/src/JSONfiles/storeReserves.json"
         my_management = HOTELRESERVATION(strIdCard, strCreditCard, strNameSurname, strPhoneNumber, strRoomType,
@@ -94,7 +94,7 @@ class HOTELMANAGER:
             data_list = []
         except json.JSONDecodeError as ex:
             # There is an error decoding the JSON file
-            raise HOTELMANAGEMENTEXCEPTION("JSON Decode Error - Wrong JSON Format") from ex
+            raise HotelManagementException("JSON Decode Error - Wrong JSON Format") from ex
 
         # Adds the order to the list
         data_list.append(my_management)
@@ -104,7 +104,7 @@ class HOTELMANAGER:
             with open(file_store, "w", encoding="utf-8", newline="") as file:
                 json.dump(data_list, file, indent=2)
         except FileNotFoundError as ex:
-            raise HOTELMANAGEMENTEXCEPTION("Wrong file or file path") from ex
+            raise HotelManagementException("Wrong file or file path") from ex
 
         return my_management.LOCALIZER
     def READDATAFROMJSON(self, strFi):
@@ -113,9 +113,9 @@ class HOTELMANAGER:
             with open(strFi) as f:
                 strData = json.load(f)
         except FileNotFoundError as e:
-            raise HOTELMANAGEMENTEXCEPTION("Wrong file or file path") from e
+            raise HotelManagementException("Wrong file or file path") from e
         except json.JSONDecodeError as e:
-            raise HOTELMANAGEMENTEXCEPTION("JSON Decode Error - Wrong JSON Format") from e
+            raise HotelManagementException("JSON Decode Error - Wrong JSON Format") from e
 
         try:
             strC = strData["CreditCard"]
@@ -123,8 +123,8 @@ class HOTELMANAGER:
             req = HOTELRESERVATION(strIdCard="12345678Z", strCreditCardNum=strC, strNameAndSurname="John Doe",
                                     strPhoneNumber=strP, strRoomType="single", intNumDays=3)
         except KeyError as e:
-            raise HOTELMANAGEMENTEXCEPTION("JSON Decode Error - Invalid JSON Key") from e
-        if not self.VALIDATECREDITCARD(strC): raise HOTELMANAGEMENTEXCEPTION("Invalid credit card number")
+            raise HotelManagementException("JSON Decode Error - Invalid JSON Key") from e
+        if not self.VALIDATECREDITCARD(strC): raise HotelManagementException("Invalid credit card number")
 
         # Close the file
         return req
