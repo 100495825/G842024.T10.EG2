@@ -13,6 +13,17 @@ class HOTELMANAGER:
     def __init__(self):
         pass
 
+    def VALIDATENAMESURNAME(self, strNameAndSurname) -> bool:
+        if (len(strNameAndSurname) <= 10) or (len(strNameAndSurname) >= 50):
+            return False
+
+        for char in strNameAndSurname:
+            if char in '1234567890':
+                return False
+
+        if ' ' not in strNameAndSurname:
+            return False
+
     def VALIDATECREDITCARD(self, strCreditCardNum:str) ->bool:
             #Comprobar la longitud de la tarjeta de credito
         if len(strCreditCardNum) != 16:
@@ -34,12 +45,13 @@ class HOTELMANAGER:
 
         return intChecksum == intChecksumTeorica
 
-    def VALIDATE_PHONE_NUMBER(self, strPhoneNumber:str) -> bool:
+    def VALIDATE_PHONE_NUMBER(self, strPhoneNumber: str) -> bool:
         if len(strPhoneNumber) != 9:
             return False
-        intList = [int(intNum) for intNum in strPhoneNumber[:-1]]
+        intList = [int(intNum) for intNum in strPhoneNumber]
         for i in intList:
-            if i != (1, 2, 3, 4, 5, 6, 7, 8, 9, 0):
+            if i not in (1, 2, 3, 4, 5, 6, 7, 8, 9, 0):
+                print(intList)
                 return False
         return True
 
@@ -49,7 +61,7 @@ class HOTELMANAGER:
         if 0 < intDays < 11:
             return True
         return False
-    def VALIDATE_ID(id):
+    def VALIDATE_ID(self, id):
         """Devuelve True si el id entregado es válido, sino False"""
         intId = id[:-1]
         if not isinstance(id, str) or len(id) != 9:
@@ -61,29 +73,29 @@ class HOTELMANAGER:
         strLetras = 'TRWAGMYFPDXBNJZSQVHLCKE'
         intIndex = int(intId) % 23
         return id[-1].upper == strLetras[intIndex]
-    def VALIDATE_ROOM_TYPE(strRoom):
+    def VALIDATE_ROOM(self, strRoom):
         """Devuelve True si el tipo de habitación es válido, sino False"""
         if not isinstance(strRoom, str):
             return False
         if strRoom.lower not in ("single", "double", "suite"):
             return False
         return True
-    def REGISTER_RESERVATION(self, strCreditCard, strIdCard, strNameSurname, strPhoneNumber, strRoomType, intNumDays):
+    def REGISTER_RESERVATION(self, strCreditCard, strId_Card, strNameSurname, strPhoneNumber, strRoomType, intNumDays):
         if not self.VALIDATECREDITCARD(strCreditCard):
             raise HOTELMANAGEMENTEXCEPTION("Creditcard not valid")
-        if not self.VALIDATE_ID(strIdCard):
+        if not self.VALIDATE_ID(strId_Card):
             raise HOTELMANAGEMENTEXCEPTION("ID not valid")
-        if not self.VALIDATENAMEANDSURNAME(strNameSurname):
+        if not self.VALIDATENAMESURNAME(strNameSurname):
             raise HOTELMANAGEMENTEXCEPTION("Name not valid")
         if not self.VALIDATE_PHONE_NUMBER(strPhoneNumber):
             raise HOTELMANAGEMENTEXCEPTION("Phone number not valid")
-        if not self.VALIDATE_ROOM_TYPE(strRoomType):
+        if not self.VALIDATE_ROOM(strRoomType):
             raise HOTELMANAGEMENTEXCEPTION("Room type not valid")
         if not self.VALIDATE_DAYS(intNumDays):
             raise HOTELMANAGEMENTEXCEPTION("Number of days not valid")
         file_store = str(Path.home())
         file_store += "/PycharmProjects/G842024.T10.EG2/src/JSONfiles/storeReserves.json"
-        my_management = HOTELRESERVATION(strIdCard, strCreditCard, strNameSurname, strPhoneNumber, strRoomType,
+        my_management = HOTELRESERVATION(strId_Card, strCreditCard, strNameSurname, strPhoneNumber, strRoomType,
                                          intNumDays)
         try:
             # Opens the json file and load the data to a list
@@ -97,7 +109,7 @@ class HOTELMANAGER:
             raise HOTELMANAGEMENTEXCEPTION("JSON Decode Error - Wrong JSON Format") from ex
 
         # Adds the order to the list
-        data_list.append(my_management)
+        data_list.append(my_management.__str__())
 
         try:
             # Opens again the json file and puts all the data in it
@@ -128,3 +140,4 @@ class HOTELMANAGER:
 
         # Close the file
         return req
+    #No se si lo siguiente está correcto
