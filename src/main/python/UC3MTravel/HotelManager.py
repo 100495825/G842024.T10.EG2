@@ -124,7 +124,7 @@ class HotelManager:
 
         #Creamos la ruta que lleva hasta el proyecto
         strArchivoAlmacenaje = str(Path.home())
-        strArchivoAlmacenaje += "/PycharmProjects/G842024.T10.EG2/src/JSONfiles/storeReserves.json"
+        strArchivoAlmacenaje += "/PycharmProjects/G842024.T10.EG2/src/JSONfiles/HotelReserves.json"
 
         #Creamos un objeto del tipo reserva
         my_reservation = HOTELRESERVATION(strIdCard, strCreditCard, strNameSurname, strPhoneNumber, strRoomType,
@@ -218,3 +218,8 @@ class HotelManager:
             raise HotelManagementException("The Localizer is not valid." )
         if not self.VALIDATE_ID(strID):
             raise HotelManagementException("The ID is not valid.")
+
+        """A CONTINUACION CARGAMOS EL FICHERO CON LA INFROMACION DE LA RESERVA"""
+        strArchivoAlmacenaje = self.path_to_json()
+        strArchivoAlmacenaje += "HotelReserves.json"
+
