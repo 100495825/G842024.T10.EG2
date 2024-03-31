@@ -23,6 +23,7 @@ class HotelManager:
 
         if ' ' not in strNameAndSurname:
             return False
+        return True
 
     def VALIDATECREDITCARD(self, strCreditCardNum: str) ->bool:
             #Comprobar la longitud de la tarjeta de credito
