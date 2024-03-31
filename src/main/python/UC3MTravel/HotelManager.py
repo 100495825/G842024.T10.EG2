@@ -13,7 +13,8 @@ class HotelManager:
     def __init__(self):
         pass
 
-    def VALIDATENAMEANDSURNAME(self, strNameAndSurname) -> bool:
+    @staticmethod
+    def VALIDATENAMEANDSURNAME(strNameAndSurname) -> bool:
         if type(strNameAndSurname) != str:
             return False
 
@@ -28,7 +29,8 @@ class HotelManager:
             return False
         return True
 
-    def VALIDATECREDITCARD(self, strCreditCardNum: str) ->bool:
+    @staticmethod
+    def VALIDATECREDITCARD(strCreditCardNum: str) ->bool:
         if type(strCreditCardNum) != str:
             return False
         #Comprobar la longitud de la tarjeta de credito
@@ -55,7 +57,8 @@ class HotelManager:
 
         return intChecksum == intChecksumTeorica
 
-    def VALIDATE_PHONE_NUMBER(self, strPhoneNumber:str) -> bool:
+    @staticmethod
+    def VALIDATE_PHONE_NUMBER(strPhoneNumber:str) -> bool:
         if type(strPhoneNumber) != str:
             return False
         if len(strPhoneNumber) != 9:
@@ -70,15 +73,16 @@ class HotelManager:
                 return False
         return True
 
-    def VALIDATE_DAYS(self, intDays) -> bool:
+    @staticmethod
+    def VALIDATE_DAYS(intDays) -> bool:
         if type(intDays) != int:
             return False
         if 0 < intDays < 11:
             return True
         return False
 
-
-    def VALIDATE_ID(self, id):
+    @staticmethod
+    def VALIDATE_ID(id):
         """Devuelve True si el id entregado es válido, sino False"""
         if type(id) != str:
             return False
@@ -93,8 +97,8 @@ class HotelManager:
         intIndex = int(intId) % 23
         return id[-1].upper() == strLetras[intIndex]
 
-
-    def VALIDATE_ROOM_TYPE(self, strRoom):
+    @staticmethod
+    def VALIDATE_ROOM_TYPE(strRoom):
         """Devuelve True si el tipo de habitación es válido, sino False"""
         if not isinstance(strRoom, str):
             return False
@@ -115,35 +119,46 @@ class HotelManager:
         if not self.VALIDATE_ROOM_TYPE(strRoomType):
             raise HotelManagementException("Room type not valid")
         if not self.VALIDATE_DAYS(intNumDays):
-            raise HotelManagementException("Number of days not valid")
-        file_store = str(Path.home())
-        file_store += "/PycharmProjects/G842024.T10.EG2/src/JSONfiles/storeReserves.json"
-        my_management = HOTELRESERVATION(strIdCard, strCreditCard, strNameSurname, strPhoneNumber, strRoomType,
+            raise HotelManagementException("Number of days not valid")ç
+
+
+        #Creamos la ruta que lleva hasta el proyecto
+        strArchivoAlmacenaje = str(Path.home())
+        strArchivoAlmacenaje += "/PycharmProjects/G842024.T10.EG2/src/JSONfiles/storeReserves.json"
+
+        #Creamos un objeto del tipo reserva
+        my_reservation = HOTELRESERVATION(strIdCard, strCreditCard, strNameSurname, strPhoneNumber, strRoomType,
                                          intNumDays)
+
+        """EMPEZAMOS A ABRIR EL FICHERO JSON. PRIMERO LEEMOS EL ARCHIVO Y LUEGO ESCRIBIMOS EN EL"""
+
+        #COMENZAMOS A LEER EL ARCHIVO
         try:
-            # Opens the json file and load the data to a list
-            with open(file_store, "r", encoding="utf-8", newline="") as file:
-                data_list = json.load(file)
+            #Abrimos el fichero json y añadimos toda la información a una lista.
+            with open(strArchivoAlmacenaje, "r", encoding="utf-8", newline="") as file:
+                lstListaDatos = json.load(file)
         except FileNotFoundError:
-            # file is not found, so init my data_list
-            data_list = []
+            # El archivo no se ha encontrado
+            lstListaDatos = []
         except json.JSONDecodeError as ex:
-            # There is an error decoding the JSON file
+            #Ocurre un error al decodificar el archivo
             raise HotelManagementException("JSON Decode Error - Wrong JSON Format") from ex
 
-        # Adds the order to the list
-        data_list.append(my_management.__str__())
+        #Añadimos la reserva que hemos hecho a la lista de datos.
+        lstListaDatos.append(my_reservation.__str__())
 
+        #COMENZAMOS A ESCRIBIR EN EL ARCHIVO
         try:
-            # Opens again the json file and puts all the data in it
-            with open(file_store, "w", encoding="utf-8", newline="") as file:
-                json.dump(data_list, file, indent=2)
+            #Abrimos otra vez el fichero y comenzamos a meter toda la información en él.
+            with open(strArchivoAlmacenaje, "w", encoding="utf-8", newline="") as file:
+                json.dump(lstListaDatos, file, indent=2)
         except FileNotFoundError as ex:
             raise HotelManagementException("Wrong file or file path") from ex
 
-        return my_management.LOCALIZER
-    def READDATAFROMJSON(self, strFi):
+        return my_reservation.LOCALIZER
 
+
+    def READDATAFROMJSON(self, strFi):
         try:
             with open(strFi) as f:
                 strData = json.load(f)
@@ -151,7 +166,6 @@ class HotelManager:
             raise HotelManagementException("Wrong file or file path") from e
         except json.JSONDecodeError as e:
             raise HotelManagementException("JSON Decode Error - Wrong JSON Format") from e
-
         try:
             strC = strData["CreditCard"]
             strP = strData["phoneNumber"]
@@ -160,6 +174,23 @@ class HotelManager:
         except KeyError as e:
             raise HotelManagementException("JSON Decode Error - Invalid JSON Key") from e
         if not self.VALIDATECREDITCARD(strC): raise HotelManagementException("Invalid credit card number")
-
-        # Close the file
+        #Cerramos el archivo
         return req
+
+    """A CONTINUACION CREAMOS FUNCIONES PARA VALIDAR LAS ENTRADAS DEL MÉTODO 2
+    ESTAS ENTRADAS SON EL LOCALIZADOR, (HASH) Y EL DNI DEL CLIENTE. LA FUNCION DE VALIDAR DNI ESTA ARRIBA. """
+
+    @staticmethod
+    def VALIDATELOCALIZER(strLocalizer) -> bool:
+        """Validamos el valor del md5"""
+        #En primer lugar, comprobamos el tipo del localizador
+        if type(strLocalizer) != str:
+            return False
+        #A continuación, comprobamos la longitud del localizador.
+        if len(strLocalizer) != 32:
+            return False
+        #Como un está en hexadecimal, comprobamos:
+        for i in strLocalizer:
+            if i not in "abcdef0123456789":
+                return False
+        return True
