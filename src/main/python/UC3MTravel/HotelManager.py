@@ -14,6 +14,9 @@ class HotelManager:
         pass
 
     def VALIDATENAMEANDSURNAME(self, strNameAndSurname) -> bool:
+        if type(strNameAndSurname) != str:
+            return False
+
         if (len(strNameAndSurname) <= 10) or (len(strNameAndSurname) >= 50):
             return False
 
@@ -26,8 +29,14 @@ class HotelManager:
         return True
 
     def VALIDATECREDITCARD(self, strCreditCardNum: str) ->bool:
-            #Comprobar la longitud de la tarjeta de credito
+        if type(strCreditCardNum) != str:
+            return False
+        #Comprobar la longitud de la tarjeta de credito
         if len(strCreditCardNum) != 16:
+            return False
+        try:
+            int(strCreditCardNum)
+        except ValueError:
             return False
         intChecksum = int(strCreditCardNum[-1])
         #Metemos los numeros en una lista
@@ -47,7 +56,13 @@ class HotelManager:
         return intChecksum == intChecksumTeorica
 
     def VALIDATE_PHONE_NUMBER(self, strPhoneNumber:str) -> bool:
+        if type(strPhoneNumber) != str:
+            return False
         if len(strPhoneNumber) != 9:
+            return False
+        try:
+            int(strPhoneNumber)
+        except ValueError:
             return False
         intList = [int(intNum) for intNum in strPhoneNumber]
         for i in intList:
@@ -56,7 +71,7 @@ class HotelManager:
         return True
 
     def VALIDATE_DAYS(self, intDays) -> bool:
-        if type(intDays) == str:
+        if type(intDays) != int:
             return False
         if 0 < intDays < 11:
             return True
@@ -65,6 +80,8 @@ class HotelManager:
 
     def VALIDATE_ID(self, id):
         """Devuelve True si el id entregado es válido, sino False"""
+        if type(id) != str:
+            return False
         intId = id[:-1]
         if not isinstance(id, str) or len(id) != 9:
             return False
@@ -81,7 +98,7 @@ class HotelManager:
         """Devuelve True si el tipo de habitación es válido, sino False"""
         if not isinstance(strRoom, str):
             return False
-        if strRoom.lower not in ("single", "double", "suite"):
+        if strRoom.lower() not in ("single", "double", "suite"):
             return False
         return True
 

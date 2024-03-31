@@ -21,7 +21,7 @@ class MyTestCase(unittest.TestCase):
             strRoomType="single",
             intNumDays=6,
         )
-        self.assertEqual(my_reservation_localizer, '#')
+        self.assertEqual(my_reservation_localizer, '6ebb8a1c790b3492164055397862500c')
 
     @freeze_time("2024-03-18")
     def test_ec_nv1(self):
@@ -30,13 +30,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="510510510510510A",
-                strIdCard="12345678Z",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
                 strPhoneNumber="689677660",
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("La tarjeta de crédito no es válida", ome.exception.message)
+        self.assertEqual("Creditcard not valid", ome.exception.message)
 
     @freeze_time("2023-03-08")
     def test_ec_nv2(self):
@@ -45,13 +45,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="51051051051051001",
-                strIdCard="12345678Z",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
                 strPhoneNumber="689677660",
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("El número de tarjeta tiene demasiados dígitos", ome.exception.message)
+        self.assertEqual("Creditcard not valid", ome.exception.message)
 
     @freeze_time("2023-03-08")
     def test_ec_nv3(self):
@@ -60,13 +60,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="510510510510510",
-                strIdCard="12345678Z",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
                 strPhoneNumber="689677660",
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("El número no contiene suficientes dígitos", ome.exception.message)
+        self.assertEqual("Creditcard not valid", ome.exception.message)
 
     @freeze_time("2023-03-08")
     def test_ec_nv4(self):
@@ -75,13 +75,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="1234567890123456",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
                 strPhoneNumber="689677660",
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("El numero de la tarjeta no es válido.", ome.exception.message)
+        self.assertEqual("Creditcard not valid", ome.exception.message)
 
     @freeze_time("2023-03-08")
     def test_ec_nv5(self):
@@ -90,13 +90,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard=5105105105105100,
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
                 strPhoneNumber="689677660",
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("El numero de la tarjeta no es válido.", ome.exception.message)
+        self.assertEqual("Creditcard not valid", ome.exception.message)
 
     """TESTS RELACIONADOS CON EL DNI DEL CLIENTE"""
 
@@ -113,7 +113,7 @@ class MyTestCase(unittest.TestCase):
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("EL DNI no es válido.", ome.exception.message)
+        self.assertEqual("ID not valid" , ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv7(self):
@@ -128,7 +128,7 @@ class MyTestCase(unittest.TestCase):
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("EL DNI no es válido.", ome.exception.message)
+        self.assertEqual("ID not valid", ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv8(self):
@@ -143,7 +143,7 @@ class MyTestCase(unittest.TestCase):
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("EL DNI no es válido.", ome.exception.message)
+        self.assertEqual("ID not valid", ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv9(self):
@@ -158,7 +158,7 @@ class MyTestCase(unittest.TestCase):
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("EL DNI no es válido.", ome.exception.message)
+        self.assertEqual("ID not valid", ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv10(self):
@@ -173,7 +173,7 @@ class MyTestCase(unittest.TestCase):
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("EL DNI no es válido.", ome.exception.message)
+        self.assertEqual("ID not valid", ome.exception.message)
 
     """TESTS RELACIONADOS CON EL NOMBRE Y APELLIDO DEL CLIENTE"""
 
@@ -184,13 +184,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Marta9 Rodriguez",
                 strPhoneNumber="689677660",
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("El nombre no es válido.", ome.exception.message)
+        self.assertEqual("Name not valid", ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv12(self):
@@ -199,13 +199,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="MartaRodriguez",
                 strPhoneNumber="689677660",
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("El nombre no es válido.", ome.exception.message)
+        self.assertEqual("Name not valid", ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv13(self):
@@ -214,13 +214,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Ana Gil",
                 strPhoneNumber="689677660",
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("El nombre no es válido.", ome.exception.message)
+        self.assertEqual("Name not valid", ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv14(self):
@@ -229,13 +229,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Maria Beatriz Diez de Baldeon Sanchez del Pinar y Ortiz",
                 strPhoneNumber="689677660",
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("El nombre no es válido.", ome.exception.message)
+        self.assertEqual("Name not valid", ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv15(self):
@@ -244,13 +244,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname=1234567,
                 strPhoneNumber="689677660",
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("El nombre no es válido.", ome.exception.message)
+        self.assertEqual("Name not valid", ome.exception.message)
 
     """TESTS RELACIONADOS CON EL NUMERO DE TELEFONO DEL CLIENTE"""
 
@@ -261,13 +261,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
                 strPhoneNumber="689677",
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("El número de teléfono no es válido.", ome.exception.message)
+        self.assertEqual("Phone number not valid", ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv17(self):
@@ -276,13 +276,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
                 strPhoneNumber="6896776606",
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("El número de teléfono no es válido.", ome.exception.message)
+        self.assertEqual("Phone number not valid", ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv18(self):
@@ -291,13 +291,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
                 strPhoneNumber="68967766a",
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("El número de teléfono no es válido.", ome.exception.message)
+        self.assertEqual("Phone number not valid", ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv19(self):
@@ -306,13 +306,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
                 strPhoneNumber=689677660,
                 strRoomType="single",
                 intNumDays=6,
             )
-        self.assertEqual("El número de teléfono no es válido.", ome.exception.message)
+        self.assertEqual("Phone number not valid", ome.exception.message)
 
     """TESTS RELACIONADOS CON EL TIPO DE HABITACION"""
 
@@ -322,13 +322,13 @@ class MyTestCase(unittest.TestCase):
         my_manager = HotelManager()
         my_reservation_localizer = my_manager.REGISTER_RESERVATION(
             strCreditCard="5105105105105100",
-            strIdCard="12345124Y",
+            strIdCard="15459426E",
             strNameSurname="Marta Rodriguez",
-            strPhoneNumber="689677",
+            strPhoneNumber="689677660",
             strRoomType="double",
             intNumDays=6,
         )
-        self.assertEqual(my_reservation_localizer, '#')
+        self.assertEqual(my_reservation_localizer, 'ffa7888dbc7ca84d44cb1aca907fea4a')
 
     @freeze_time("2024-03-18")
     def test_ec_v3(self):
@@ -336,13 +336,13 @@ class MyTestCase(unittest.TestCase):
         my_manager = HotelManager()
         my_reservation_localizer = my_manager.REGISTER_RESERVATION(
             strCreditCard="5105105105105100",
-            strIdCard="12345124Y",
+            strIdCard="15459426E",
             strNameSurname="Marta Rodriguez",
-            strPhoneNumber="689677",
+            strPhoneNumber="689677664",
             strRoomType="suite",
             intNumDays=6,
         )
-        self.assertEqual(my_reservation_localizer, '#')
+        self.assertEqual(my_reservation_localizer, '69432e6999d2eb6dafa878bce21ab40a')
 
     @freeze_time("2024-03-18")
     def test_ec_nv20(self):
@@ -351,13 +351,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
-                strPhoneNumber="689677",
+                strPhoneNumber="689677660",
                 strRoomType="triple",
                 intNumDays=6,
             )
-        self.assertEqual("El tipo de habitación no es válido.", ome.exception.message)
+        self.assertEqual("Room type not valid", ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv21(self):
@@ -366,13 +366,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
-                strPhoneNumber="689677",
+                strPhoneNumber="689677660",
                 strRoomType=1234,
                 intNumDays=6,
             )
-        self.assertEqual("El tipo de habitación no es válido.", ome.exception.message)
+        self.assertEqual("Room type not valid", ome.exception.message)
 
     """TESTS RELACIONADOS CON EL NÚMERO DE DÍAS"""
 
@@ -383,13 +383,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
-                strPhoneNumber="689677",
+                strPhoneNumber="689677660",
                 strRoomType="single",
                 intNumDays=11,
             )
-        self.assertEqual("El número de días es inválido.", ome.exception.message)
+        self.assertEqual('Number of days not valid', ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv23(self):
@@ -398,13 +398,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
-                strPhoneNumber="689677",
+                strPhoneNumber="689677660",
                 strRoomType="single",
                 intNumDays=-1,
             )
-        self.assertEqual("El número de días es inválido.", ome.exception.message)
+        self.assertEqual('Number of days not valid', ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv24(self):
@@ -413,13 +413,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
-                strPhoneNumber="689677",
+                strPhoneNumber="689677660",
                 strRoomType="single",
                 intNumDays="abc",
             )
-        self.assertEqual("El número de días es inválido.", ome.exception.message)
+        self.assertEqual('Number of days not valid', ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_ec_nv24(self):
@@ -428,13 +428,13 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(HotelManagementException) as ome:
             my_manager.REGISTER_RESERVATION(
                 strCreditCard="5105105105105100",
-                strIdCard="12345124Y",
+                strIdCard="15459426E",
                 strNameSurname="Marta Rodriguez",
-                strPhoneNumber="689677",
+                strPhoneNumber="689677660",
                 strRoomType="single",
                 intNumDays=2.4,
             )
-        self.assertEqual("El número de días es inválido.", ome.exception.message)
+        self.assertEqual('Number of days not valid', ome.exception.message)
 
 
 

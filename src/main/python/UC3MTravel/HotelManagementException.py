@@ -5,10 +5,10 @@ class HotelManagementException(Exception):
 
 
     @property
-    def MESSAGE(self):
+    def message(self):
         return self.__strMessage
 
-    @MESSAGE.setter
-    def MESSAGE(self, strValue):
+    @message.setter
+    def message(self, strValue):
         self.__strMessage = strValue
 
