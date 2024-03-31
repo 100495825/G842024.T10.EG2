@@ -83,7 +83,7 @@ class HOTELMANAGER:
             raise HOTELMANAGEMENTEXCEPTION("Number of days not valid")
         file_store = str(Path.home())
         file_store += "/PycharmProjects/G842024.T10.EG2/src/JSONfiles/storeReserves.json"
-        my_management = HOTELRESERVATION(strId_Card, strCreditCard, strNameSurname, strPhoneNumber, strRoomType,
+        my_management = HOTELRESERVATION(strIdCard, strCreditCard, strNameSurname, strPhoneNumber, strRoomType,
                                          intNumDays)
         try:
             # Opens the json file and load the data to a list
@@ -128,12 +128,3 @@ class HOTELMANAGER:
 
         # Close the file
         return req
-    #No se si lo siguiente está correcto
-
-
-
-    def room_reservation(self, strIdCard, strCreditCardNum, strNameAndSurname, strPhoneNumber, strRoomType, intNumDays)
-        if not self.VALIDATE_ID(strIdCard):
-            raise HotelManagerException("ID no valido")
-        if not self.VALIDATE_ROOM(strRoomType):
-            raise HotelManagerException("Tipo de habitación no válido")
