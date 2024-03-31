@@ -1,9 +1,10 @@
 ''' Class HotelReservation (GE2.2) '''
 import hashlib
-
+import json
 from datetime import datetime
 
 class HOTELRESERVATION:
+    """Esta clase representa una reserva de hotel"""
     def __init__(self, strIdCard, strCreditCardNum, strNameAndSurname, strPhoneNumber, strRoomType, intNumDays):
         self.__strCreditCardNum = strCreditCardNum
         self.__strIdCard = strIdCard
@@ -13,6 +14,7 @@ class HOTELRESERVATION:
         self.__strPhoneNumber = strPhoneNumber
         self.__strRoomType = strRoomType
         self.__intNumDays = intNumDays
+        self.__localizer = hashlib.md5(str(self).encode()).hexdigest()
 
     def __str__(self):
         """return a json string with the elements required to calculate the localizer"""
@@ -26,6 +28,7 @@ class HOTELRESERVATION:
                     "room_type": self.__strRoomType,
                     }
         return "HotelReservation:" + json_info.__str__()
+        #return "HotelReservation:" + json.dumps(self.__dict__)
     @property
     def CREDITCARD(self):
         return self.__strCreditCardNum
@@ -48,15 +51,12 @@ class HOTELRESERVATION:
     def PHONE_NUMBER(self, strValue):
         self.__strPhoneNumber = strValue
 
-
-
     @property
     def IDCARD(self):
         return self.__strIdCard
     @IDCARD.setter
     def IDCARD(self, strValue):
         self.__strIdCard = strValue
-
 
     @property
     def LOCALIZER(self):
