@@ -1,12 +1,12 @@
 ''' Class HotelManager (GE2.2) '''
-
+import re
 import json
-
-from .HotelManagementException import HotelManagementException
-
-from .HotelReservation import HOTELRESERVATION
 from pathlib import Path
-
+from datetime import datetime
+import time
+from .HotelStay import HOTELSTAY
+from .HotelManagementException import HotelManagementException
+from .HotelReservation import HOTELRESERVATION
 
 class HotelManager:
     """Class HotelManager"""
