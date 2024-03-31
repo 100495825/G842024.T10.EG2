@@ -1,2 +1,3 @@
 ''' __init__.py (GE2.2) '''
-from src.main.python.UC3MTravel.HotelManagementException import HOTELMANAGMENTEXCEPTION
+from .HotelManagementException import HOTELMANAGEMENTEXCEPTION
+from .HotelManager import HOTELMANAGER
