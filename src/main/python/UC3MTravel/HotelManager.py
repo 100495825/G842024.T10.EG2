@@ -194,3 +194,27 @@ class HotelManager:
             if i not in "abcdef0123456789":
                 return False
         return True
+
+
+    """COMENZAMOS EL METODO 2: LLEGADA AL HOTEL"""
+    def GUESTARRIVAL(self, ruta_archivo):
+        #Obtenemos toda la informacion del archivo de entrada
+        try:
+            #Leemos el archivo
+            with open(ruta_archivo, "r", encoding="utf-8", newline="") as file:
+                input_data = json.load(file)
+        except FileNotFoundError as ex:
+            #Lanzamos excepcion si no se encuentra el archivo
+            raise HotelManagementException("Input file not found.") from ex
+        except json.JSONDecodeError as ex:
+            # Ocurre un error al decodificar el archivo
+            raise HotelManagementException("JSON Decode Error - Wrong JSON Format.") from ex
+        try:
+            strLocalizer = input_data["Localizer"]
+            strID = input_data["ClientID"]
+        except KeyError as ex:
+            raise HotelManagementException("Invalid Keys in input File.") from ex
+        if not self.VALIDATELOCALIZER(strLocalizer):
+            raise HotelManagementException("The Localizer is not valid." )
+        if not self.VALIDATE_ID(strID):
+            raise HotelManagementException("The ID is not valid.")
