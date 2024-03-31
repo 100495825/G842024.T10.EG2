@@ -13,7 +13,7 @@ class HotelManager:
     def __init__(self):
         pass
 
-    def VALIDATENAMESURNAME(self, strNameAndSurname) -> bool:
+    def VALIDATENAMEANDSURNAME(self, strNameAndSurname) -> bool:
         if (len(strNameAndSurname) <= 10) or (len(strNameAndSurname) >= 50):
             return False
 
