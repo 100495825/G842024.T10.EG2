@@ -209,6 +209,156 @@ class TESTS_RESERVE(unittest.TestCase):
                                                            intNumDays=5)
         self.assertEqual("Phone number not valid", HME.exception.MESSAGE)
 
+    def TEST_ID_C1(self):
+        my_manager = HOTELMANAGER()
+        my_reserveID = my_manager.REGISTER_RESERVATION(strCreditCard="510051005100510A",
+                                                       strId_Card="12345124Y",
+                                                       strNameSurname="Juanjo Sanchez",
+                                                       strPhoneNumber="123475869",
+                                                       strRoomType="Single",
+                                                       intNumDays=5)
+        self.assertEqual(my_reserveID, '348515e8e2ec22aebe7e3f831e8b7807')
+
+    def TEST_ID_CN1(self):
+        my_manager = HOTELMANAGER()
+        with self.assertRaises(HOTELMANAGEMENTEXCEPTION) as HME:
+            my_manager.REGISTER_RESERVATION(strCreditCard="510051005100510A",
+                                            strId_Card="12345124P",
+                                            strNameSurname="Juanjo Sanchez",
+                                            strPhoneNumber="123475869",
+                                            strRoomType="Single",
+                                            intNumDays=5)
+        self.assertEqual("ID not valid", HME.exception.MESSAGE)
+
+    def TEST_ID_CN2(self):
+        my_manager = HOTELMANAGER()
+        with self.assertRaises(HOTELMANAGEMENTEXCEPTION) as HME:
+            my_manager.REGISTER_RESERVATION(strCreditCard="510051005100510A",
+                                            strId_Card="123451249",
+                                            strNameSurname="Juanjo Sanchez",
+                                            strPhoneNumber="123475869",
+                                            strRoomType="Single",
+                                            intNumDays=5)
+        self.assertEqual("ID not valid", HME.exception.MESSAGE)
+
+    def TEST_ID_CN3(self):
+        my_manager = HOTELMANAGER()
+        with self.assertRaises(HOTELMANAGEMENTEXCEPTION) as HME:
+            my_manager.REGISTER_RESERVATION(strCreditCard="510051005100510A",
+                                            strId_Card="1234a124Y",
+                                            strNameSurname="Juanjo Sanchez",
+                                            strPhoneNumber="123475869",
+                                            strRoomType="Single",
+                                            intNumDays=5)
+        self.assertEqual("ID not valid", HME.exception.MESSAGE)
+
+    def TEST_ID_CN4(self):
+        my_manager = HOTELMANAGER()
+        with self.assertRaises(HOTELMANAGEMENTEXCEPTION) as HME:
+            my_manager.REGISTER_RESERVATION(strCreditCard="510051005100510A",
+                                            strId_Card="12345124",
+                                            strNameSurname="Juanjo Sanchez",
+                                            strPhoneNumber="123475869",
+                                            strRoomType="Single",
+                                            intNumDays=5)
+        self.assertEqual("ID not valid", HME.exception.MESSAGE)
+
+    def TEST_ID_CN5(self):
+        my_manager = HOTELMANAGER()
+        with self.assertRaises(HOTELMANAGEMENTEXCEPTION) as HME:
+            my_manager.REGISTER_RESERVATION(strCreditCard="510051005100510A",
+                                            strId_Card="123451249Y",
+                                            strNameSurname="Juanjo Sanchez",
+                                            strPhoneNumber="123475869",
+                                            strRoomType="Single",
+                                            intNumDays=5)
+        self.assertEqual("ID not valid", HME.exception.MESSAGE)
+
+    def TEST_ID_CN1(self):
+        my_manager = HOTELMANAGER()
+        with self.assertRaises(HOTELMANAGEMENTEXCEPTION) as HME:
+            my_manager.REGISTER_RESERVATION(strCreditCard="510051005100510A",
+                                            strId_Card="12345124P",
+                                            strNameSurname="Juanjo Sanchez",
+                                            strPhoneNumber="123475869",
+                                            strRoomType="Single",
+                                            intNumDays=5)
+        self.assertEqual("ID not valid", HME.exception.MESSAGE)
+
+    def TEST_ID_VL1(self):
+        my_manager = HOTELMANAGER()
+        my_reserveID = my_manager.REGISTER_RESERVATION(strCreditCard="510051005100510A",
+                                                       strId_Card="12345124Y",
+                                                       strNameSurname="Juanjo Sanchez",
+                                                       strPhoneNumber="123475869",
+                                                       strRoomType="Single",
+                                                       intNumDays=5)
+        self.assertEqual(my_reserveID, '348515e8e2ec22aebe7e3f831e8b7807')
+
+    def TEST_ID_VLN1(self):
+        my_manager = HOTELMANAGER()
+        with self.assertRaises(HOTELMANAGEMENTEXCEPTION) as HME:
+            my_manager.REGISTER_RESERVATION(strCreditCard="510051005100510A",
+                                            strId_Card="12345124YY",
+                                            strNameSurname="Juanjo Sanchez",
+                                            strPhoneNumber="123475869",
+                                            strRoomType="Single",
+                                            intNumDays=5)
+        self.assertEqual("ID not valid", HME.exception.MESSAGE)
+
+    def TEST_ID_VLN2(self):
+        my_manager = HOTELMANAGER()
+        with self.assertRaises(HOTELMANAGEMENTEXCEPTION) as HME:
+            my_manager.REGISTER_RESERVATION(strCreditCard="510051005100510A",
+                                            strId_Card="1234512Y",
+                                            strNameSurname="Juanjo Sanchez",
+                                            strPhoneNumber="123475869",
+                                            strRoomType="Single",
+                                            intNumDays=5)
+        self.assertEqual("ID not valid", HME.exception.MESSAGE)
+
+    def TEST_ROOM_TYPE_C1(self):
+        my_manager = HOTELMANAGER()
+        my_reserveID = my_manager.REGISTER_RESERVATION(strCreditCard="510051005100510A",
+                                                       strId_Card="12345124Y",
+                                                       strNameSurname="Juanjo Sanchez",
+                                                       strPhoneNumber="123475869",
+                                                       strRoomType="suite",
+                                                       intNumDays=5)
+        self.assertEqual(my_reserveID, '348515e8e2ec22aebe7e3f831e8b7807')
+
+    def TEST_ROOM_TYPE_CN1(self):
+        my_manager = HOTELMANAGER()
+        with self.assertRaises(HOTELMANAGEMENTEXCEPTION) as HME:
+            my_manager.REGISTER_RESERVATION(strCreditCard="510051005100510A",
+                                            strId_Card="12345124Y",
+                                            strNameSurname="Juanjo Sanchez",
+                                            strPhoneNumber="123475869",
+                                            strRoomType=4,
+                                            intNumDays=5)
+        self.assertEqual("Room type not valid", HME.exception.MESSAGE)
+
+    def TEST_ROOM_TYPE_VL1(self):
+        my_manager = HOTELMANAGER()
+        my_reserveID = my_manager.REGISTER_RESERVATION(strCreditCard="510051005100510A",
+                                                       strId_Card="12345124Y",
+                                                       strNameSurname="Juanjo Sanchez",
+                                                       strPhoneNumber="123475869",
+                                                       strRoomType="Single",
+                                                       intNumDays=5)
+        self.assertEqual(my_reserveID, '348515e8e2ec22aebe7e3f831e8b7807')
+
+        def TEST_ROOM_TYPE_VLN1(self):
+            my_manager = HOTELMANAGER()
+            with self.assertRaises(HOTELMANAGEMENTEXCEPTION) as HME:
+                my_manager.REGISTER_RESERVATION(strCreditCard="510051005100510A",
+                                                strId_Card="12345124P",
+                                                strNameSurname="Juanjo Sanchez",
+                                                strPhoneNumber="123475869",
+                                                strRoomType="doble",
+                                                intNumDays=11)
+            self.assertEqual("Room type not valid", HME.exception.MESSAGE)
+
 
 class TEST_VALID_CREDIT_CARD(unittest.TestCase):
     def TEST_VALID_CARD(self):
