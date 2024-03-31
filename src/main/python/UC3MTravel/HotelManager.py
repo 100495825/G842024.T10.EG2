@@ -61,23 +61,23 @@ class HOTELMANAGER:
         strLetras = 'TRWAGMYFPDXBNJZSQVHLCKE'
         intIndex = int(intId) % 23
         return id[-1].upper == strLetras[intIndex]
-    def VALIDATE_ROOM(strRoom):
+    def VALIDATE_ROOM_TYPE(strRoom):
         """Devuelve True si el tipo de habitación es válido, sino False"""
         if not isinstance(strRoom, str):
             return False
         if strRoom.lower not in ("single", "double", "suite"):
             return False
         return True
-    def REGISTER_RESERVATION(self, strCreditCard, strId_Card, strNameSurname, strPhoneNumber, strRoomType, intNumDays):
+    def REGISTER_RESERVATION(self, strCreditCard, strIdCard, strNameSurname, strPhoneNumber, strRoomType, intNumDays):
         if not self.VALIDATECREDITCARD(strCreditCard):
             raise HOTELMANAGEMENTEXCEPTION("Creditcard not valid")
-        if not self.VALIDATEID(strId_Card):
+        if not self.VALIDATE_ID(strIdCard):
             raise HOTELMANAGEMENTEXCEPTION("ID not valid")
         if not self.VALIDATENAMEANDSURNAME(strNameSurname):
             raise HOTELMANAGEMENTEXCEPTION("Name not valid")
         if not self.VALIDATE_PHONE_NUMBER(strPhoneNumber):
             raise HOTELMANAGEMENTEXCEPTION("Phone number not valid")
-        if not self.ROOMTYPE(strRoomType):
+        if not self.VALIDATE_ROOM_TYPE(strRoomType):
             raise HOTELMANAGEMENTEXCEPTION("Room type not valid")
         if not self.VALIDATE_DAYS(intNumDays):
             raise HOTELMANAGEMENTEXCEPTION("Number of days not valid")

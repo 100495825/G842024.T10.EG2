@@ -426,3 +426,29 @@ class TEST_VALID_ARRIVAL_DATE(unittest.TestCase):
         #Comprobamos que cumple el formato adecuado
         dateArrival = datetime.utcnow()
         self.assertTrue(VALIDATEDATEFORMAT(dateArrival))
+class TEST_VALID_ROOM_TYPE(unittest.TestCase):
+    def TEST_VALID_ROOM_TYPE(self):
+        #Comprobamos una habitación válida
+        strRoomType= "suite"
+        self.assertTrue(VALIDATE_ROOM_TYPE(strRoomType))
+    def TEST_INVALID_ROOM_TYPE(self):
+         #Comrpobamos una habitación cuyo nombre no es correcto
+         strRoomType = "doble"
+         self.assertFalse(VALIDATE_ROOM_TYPE(strRoomType))
+class TEST_VALID_ID(unittest.TestCase):
+    def TEST_VALID_ID(self):
+        #Comprobamos un ID válido
+        strIdCard="12345124Y"
+        self.assertTrue(VALIDATE_ID(strIdCard))
+    def TEST_INVALID_LENGHT(self):
+        #Comprobamos un ID con una longitud no permitida
+        strIdCard="1234567P"
+        self.assertFalse(VALIDATE_ID(strIdCard))
+    def TEST_INVALID_DIGIT(self):
+        #Comrpobamos un ID con dígitos no válidos
+        strIdCard="12345a24Y"
+        self.assertFalse(VALIDATE_ID(strIdCard))
+    def TEST_NO_LETTER(self):
+        #Comprobamos un ID sin letra
+        strIdCard="12345124"
+        self.assertFalse(VALIDATE_ID(strIdCard))
