@@ -279,6 +279,17 @@ class HotelManager:
                 #Lanzamos una Excepcion si no se ha encontrado
                 raise HotelManagementException("Invalid file or path to file") from ex
 
-            """CAMBIAR!!!!!"""
             #DEVOLVEMOS LA LLAVE DE LA HABITACION DEL HOTEL
             return my_hotel_stay.strRoomKey
+
+    @staticmethod
+    def VALIDATESHAH256(strRoomKey):
+    #Validamos que el strRoomKey cumple con el formato del shah-256
+        if type(strRoomKey) != str or len(strRoomKey)!= 64:
+            #Comrpobamos la longitud y el tipo
+            return False
+        for i in strRoomKey:
+            #Comprobamso que esta escrito en hexadecimal y es valido
+            if i not in "abcdef1234567890":
+                return False
+        return True
