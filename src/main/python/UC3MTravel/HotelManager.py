@@ -7,6 +7,7 @@ import time
 from .HotelStay import HOTELSTAY
 from .HotelManagementException import HotelManagementException
 from .HotelReservation import HOTELRESERVATION
+from .HotelCheckout import HotelCheckout
 
 class HotelManager:
     """Class HotelManager"""
@@ -317,4 +318,54 @@ class HotelManager:
         #EN PRIMER LUGAR, COMPROBAMOS LA VALIDEZ DE LA LLAVE DE HABITACION
         if not self.VALIDATESHAH256(strRoomKey):
             raise HotelManagementException("Error: invalid room key.")
+        # Determinamos el path al archivo json
+        archivo = self.path_to_json()
+        archivo += "HotelStays.json"
+        try:
+            # Abre el archivo json e importa la información a una lista
+            with open(archivo, "r", encoding="utf-8", newline="") as file:
+                lista_datos = json.load(file)
+        except FileNotFoundError as ex:
+            raise HotelManagementException("Error: File not found") from ex
+        except json.JSONDecodeError as ex:
+            # Hay un error decodificando el archivo json
+            raise HotelManagementException("JSON Decode Error - Wrong JSON Format") from ex
 
+        # Genera un timestamp
+        # Intenta encontrar la "Room Key"
+        found = False
+        for element in lista_datos:
+            if (element['room_key'] == strRoomKey) and \
+                    (datetime.fromtimestamp(element["exit_day"]).date() == datetime.today().date()):
+                found = True
+        # La "Room Key" no se ha encontrado
+        if not found:
+            raise HotelManagementException("Error: room not found.")
+        # Guarda en un almacen los datos de salida
+        datos_salida = HotelCheckout(strRoomKey, datetime.today().date())
+
+        archivo = self.path_to_json()
+        archivo += "HotelCheckout.json"
+
+        try:
+            # Abre el archivo json e importa los datos a la lista
+            with open(archivo, "r", encoding="utf-8", newline="") as file:
+                data_list = json.load(file)
+        except FileNotFoundError:
+            # El archivo no se encuentra
+            data_list = []
+        except json.JSONDecodeError as ex:
+            # Hay un error decodificando el archivo json
+            raise HotelManagementException("JSON Decode Error - Wrong JSON Format") from ex
+
+        data_list.append(datos_salida.__dict__)
+
+        try:
+            # Abre el archivo json e inserta los datos
+            with open(archivo, "w", encoding="utf-8", newline="") as file:
+                json.dump(data_list, file, indent=2)
+        except FileNotFoundError as ex:
+            raise HotelManagementException("Error encontrando archivo") from ex
+
+        # Devuelve True
+        return True
