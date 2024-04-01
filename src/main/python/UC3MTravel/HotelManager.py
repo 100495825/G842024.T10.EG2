@@ -13,6 +13,7 @@ class HotelManager:
     def __init__(self):
         pass
 
+    """COMENZAMOS DECLARANDO TODOS LOS METODOS ESTATICOS Y LAS FUNCIONES DE VALIDAR"""
     @staticmethod
     def VALIDATENAMEANDSURNAME(strNameAndSurname) -> bool:
         if type(strNameAndSurname) != str:
@@ -106,6 +107,39 @@ class HotelManager:
             return False
         return True
 
+    @staticmethod
+    def VALIDATELOCALIZER(strLocalizer) -> bool:
+        """Validamos el valor del md5"""
+        # En primer lugar, comprobamos el tipo del localizador
+        if type(strLocalizer) != str:
+            return False
+        # A continuación, comprobamos la longitud del localizador.
+        if len(strLocalizer) != 32:
+            return False
+        # Como un está en hexadecimal, comprobamos:
+        for i in strLocalizer:
+            if i not in "abcdef0123456789":
+                return False
+        return True
+
+    @staticmethod
+    def VALIDATESHAH256(strRoomKey):
+        # Validamos que el strRoomKey cumple con el formato del shah-256
+        if type(strRoomKey) != str or len(strRoomKey) != 64:
+            # Comrpobamos la longitud y el tipo
+            return False
+        for i in strRoomKey:
+            # Comprobamos que esta escrito en hexadecimal y es valido
+            if i not in "abcdef1234567890":
+                return False
+        return True
+
+    @staticmethod
+    def RUTAARCHIVOJSON() -> str:
+        """ Definimos el camino que lleva hasta el archivo json """
+        home_path = str(Path.home())
+        home_path += "/PycharmProjects/G842024.T10.EG2/src/JSONFiles/"
+        return home_path
 
     def REGISTER_RESERVATION(self, strCreditCard, strIdCard, strNameSurname, strPhoneNumber, strRoomType, intNumDays):
         if not self.VALIDATECREDITCARD(strCreditCard):
@@ -119,7 +153,7 @@ class HotelManager:
         if not self.VALIDATE_ROOM_TYPE(strRoomType):
             raise HotelManagementException("Room type not valid")
         if not self.VALIDATE_DAYS(intNumDays):
-            raise HotelManagementException("Number of days not valid")ç
+            raise HotelManagementException("Number of days not valid")
 
 
         #Creamos la ruta que lleva hasta el proyecto
@@ -179,21 +213,6 @@ class HotelManager:
 
     """A CONTINUACION CREAMOS FUNCIONES PARA VALIDAR LAS ENTRADAS DEL MÉTODO 2
     ESTAS ENTRADAS SON EL LOCALIZADOR, (HASH) Y EL DNI DEL CLIENTE. LA FUNCION DE VALIDAR DNI ESTA ARRIBA. """
-
-    @staticmethod
-    def VALIDATELOCALIZER(strLocalizer) -> bool:
-        """Validamos el valor del md5"""
-        #En primer lugar, comprobamos el tipo del localizador
-        if type(strLocalizer) != str:
-            return False
-        #A continuación, comprobamos la longitud del localizador.
-        if len(strLocalizer) != 32:
-            return False
-        #Como un está en hexadecimal, comprobamos:
-        for i in strLocalizer:
-            if i not in "abcdef0123456789":
-                return False
-        return True
 
 
     """COMENZAMOS EL METODO 2: LLEGADA AL HOTEL"""
@@ -282,17 +301,6 @@ class HotelManager:
             #DEVOLVEMOS LA LLAVE DE LA HABITACION DEL HOTEL
             return my_hotel_stay.strRoomKey
 
-    @staticmethod
-    def VALIDATESHAH256(strRoomKey):
-    #Validamos que el strRoomKey cumple con el formato del shah-256
-        if type(strRoomKey) != str or len(strRoomKey)!= 64:
-            #Comrpobamos la longitud y el tipo
-            return False
-        for i in strRoomKey:
-            #Comprobamos que esta escrito en hexadecimal y es valido
-            if i not in "abcdef1234567890":
-                return False
-        return True
 
     """COMENZAMOS LA TERCERA FUNCION: CHECKOUT"""
 
@@ -331,6 +339,3 @@ class HotelManager:
                 json.dump(lstListaDatos, file, indent=2)
         except FileNotFoundError as ex:
             raise HotelManagementException("Invalid file or path to file") from ex
-
-
-
