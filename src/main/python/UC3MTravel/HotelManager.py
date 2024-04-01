@@ -289,7 +289,15 @@ class HotelManager:
             #Comrpobamos la longitud y el tipo
             return False
         for i in strRoomKey:
-            #Comprobamso que esta escrito en hexadecimal y es valido
+            #Comprobamos que esta escrito en hexadecimal y es valido
             if i not in "abcdef1234567890":
                 return False
         return True
+
+    """COMENZAMOS LA TERCERA FUNCION: CHECKOUT"""
+
+    def CHECKOUT(self, strRoomKey):
+        #EN PRIMER LUGAR, COMPROBAMOS LA VALIDEZ DE LA LLAVE DE HABITACION
+        if not self.VALIDATESHAH256(strRoomKey):
+            raise HotelManagementException("Error: invalid room key.")
+
