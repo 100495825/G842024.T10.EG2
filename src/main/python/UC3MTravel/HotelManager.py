@@ -279,7 +279,6 @@ class HotelManager:
                 #Lanzamos una Excepcion si no se ha encontrado
                 raise HotelManagementException("Invalid file or path to file") from ex
 
-
             """CAMBIAR!!!!!"""
-            # Returns the tracking code of the OrderShipping
-            return my_order_shipping.tracking_code
+            #DEVOLVEMOS LA LLAVE DE LA HABITACION DEL HOTEL
+            return my_hotel_stay.strRoomKey
