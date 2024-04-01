@@ -14,7 +14,7 @@ class HOTELRESERVATION:
         self.__strPhoneNumber = strPhoneNumber
         self.__strRoomType = strRoomType
         self.__intNumDays = intNumDays
-        self.__localizer = hashlib.md5(str(self).encode()).hexdigest()
+        self.__strLocalizer = hashlib.md5(str(self).encode()).hexdigest()
 
     def __str__(self):
         """return a json string with the elements required to calculate the localizer"""
