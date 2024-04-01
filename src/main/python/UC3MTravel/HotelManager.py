@@ -220,6 +220,18 @@ class HotelManager:
             raise HotelManagementException("The ID is not valid.")
 
         """A CONTINUACION CARGAMOS EL FICHERO CON LA INFROMACION DE LA RESERVA"""
-        strArchivoAlmacenaje = self.path_to_json()
+        strArchivoAlmacenaje = self.RUTAARCHIVOJSON()
         strArchivoAlmacenaje += "HotelReserves.json"
 
+
+        """Cargamos los datos del fichero json a una lista"""
+        try:
+            #Volvemos a leer el fichero otra vez
+            with open(strArchivoAlmacenaje, "r", encoding="utf-8", newline="") as file:
+                lstListaDatos = json.load(file)
+        except FileNotFoundError as ex:
+            #Lanzamos una excepcion si no se encuentra el archivo JSON
+            raise HotelManagementException("JSON File Not Found.") from ex
+        except json.JSONDecodeError as ex:
+            #Lanzamos una excepcion al decodificar el archivo json
+            raise HotelManagementException("JSON Decode Error - Wrong JSON Format.") from ex
