@@ -153,7 +153,7 @@ class HotelManager:
             with open(strArchivoAlmacenaje, "w", encoding="utf-8", newline="") as file:
                 json.dump(lstListaDatos, file, indent=2)
         except FileNotFoundError as ex:
-            raise HotelManagementException("Wrong file or file path") from ex
+            raise HotelManagementException("Invalid file or path to file") from ex
 
         return my_reservation.LOCALIZER
 
@@ -163,7 +163,7 @@ class HotelManager:
             with open(strFi) as f:
                 strData = json.load(f)
         except FileNotFoundError as e:
-            raise HotelManagementException("Wrong file or file path") from e
+            raise HotelManagementException("Invalid file or path to file") from e
         except json.JSONDecodeError as e:
             raise HotelManagementException("JSON Decode Error - Wrong JSON Format") from e
         try:
@@ -300,4 +300,37 @@ class HotelManager:
         #EN PRIMER LUGAR, COMPROBAMOS LA VALIDEZ DE LA LLAVE DE HABITACION
         if not self.VALIDATESHAH256(strRoomKey):
             raise HotelManagementException("Error: invalid room key.")
+
+        #ESTABLECEMOS RUTA AL FICHERO JSON PARA LUEGO COMPROBAR LAS FECHAS
+        strArchivoAlmacenaje = self.RUTAARCHIVOJSON()
+        strArchivoAlmacenaje += "HotelStays.json"
+
+        #COMENZAMOS LEYENDO EL ARCHIVO COMO SIEMPRE
+        try:
+            # Abrimos el fichero json para leer
+            with open(strArchivoAlmacenaje, "r", encoding="utf-8", newline="") as file:
+                lstListaDatos = json.load(file)
+        except FileNotFoundError as ex:
+            #Lanzamos excepcion si no se encuentra el archivo
+            raise HotelManagementException("Error: File not found") from ex
+        except json.JSONDecodeError as ex:
+            # Excepcion si ocurre algun error al decodificar el archivo
+            raise HotelManagementException("JSON Decode Error - Wrong JSON Format") from ex
+
+
+        #EN CASO DE ERROR BUSCANDO LA LLAVE DEL HOTEL, BUSCAMOS LA FECHA PREVISTA DE ENTREGA.
+        timestamp = time.time()
+        #Añadimos al fcihero json la fecha prevista y el valor de la llave.
+        dictDatos = {'Fecha': timestamp, 'Room Key': strRoomKey}
+        lstListaDatos.append(dictDatos)
+
+        # POR ULTIMO ACTUALIZAMOS EL FICHERO JSON CON LA INFORMACION
+        try:
+            # Abrimos el fichero json pero en modo escritura
+            with open(strArchivoAlmacenaje, "w", encoding="utf-8", newline="") as file:
+                json.dump(lstListaDatos, file, indent=2)
+        except FileNotFoundError as ex:
+            raise HotelManagementException("Invalid file or path to file") from ex
+
+
 
