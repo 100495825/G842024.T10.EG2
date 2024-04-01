@@ -106,6 +106,23 @@ class HotelManager:
             return False
         return True
 
+    @staticmethod
+    def validate_sha256(sha256):
+        """ Verifica si un código sha256 es correcto"""
+        if len(sha256) != 64:  # Comprueba si el hash es de 64 caracteres
+            return False
+        for char in sha256:  # Comprueba si el hash está en hexadecimal
+            if char not in '0123456789abcdef':
+                return False
+        return True
+
+    @staticmethod
+    def path_to_json() -> str:
+        """ Define the path to json folder """
+        home_path = Path.home()
+        if home_path:
+            home_path /= "PycharmProjects/G842024.T10.EG2/src/JsonFiles"
+        return str(home_path)
 
     def REGISTER_RESERVATION(self, strCreditCard, strIdCard, strNameSurname, strPhoneNumber, strRoomType, intNumDays):
         if not self.VALIDATECREDITCARD(strCreditCard):
@@ -119,7 +136,7 @@ class HotelManager:
         if not self.VALIDATE_ROOM_TYPE(strRoomType):
             raise HotelManagementException("Room type not valid")
         if not self.VALIDATE_DAYS(intNumDays):
-            raise HotelManagementException("Number of days not valid")ç
+            raise HotelManagementException("Number of days not valid")
 
 
         #Creamos la ruta que lleva hasta el proyecto

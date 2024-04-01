@@ -14,6 +14,7 @@ class HOTELSTAY():
         #timestamp is represented in seconds.miliseconds
         #to add the number of days we must express numdays in seconds
         self.__dateDeparture = self.__dateArrival + (intNumdays * 24 * 60 * 60)
+        self.__room_key = self.room_key
 
     def __SIGNATURESTRING(self):
         """Composes the string to be used for generating the key for the room"""
