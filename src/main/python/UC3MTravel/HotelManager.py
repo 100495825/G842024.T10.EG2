@@ -229,13 +229,13 @@ class HotelManager:
             # Ocurre un error al decodificar el archivo
             raise HotelManagementException("JSON Decode Error - Wrong JSON Format.") from ex
         try:
-            strLocalizer = input_data["Localizer"]
-            strID = input_data["ClientID"]
+            strLocalizer = input_data["strLocalizer"]
+            strIdCard = input_data["strIdCard"]
         except KeyError as ex:
             raise HotelManagementException("Invalid Keys in input File.") from ex
         if not self.VALIDATELOCALIZER(strLocalizer):
             raise HotelManagementException("The Localizer is not valid." )
-        if not self.VALIDATE_ID(strID):
+        if not self.VALIDATE_ID(strIdCard):
             raise HotelManagementException("The ID is not valid.")
 
         """A CONTINUACION CARGAMOS EL FICHERO CON LA INFORMACION DE LA RESERVA"""
