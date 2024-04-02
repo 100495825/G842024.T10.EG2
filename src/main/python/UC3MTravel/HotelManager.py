@@ -231,6 +231,7 @@ class HotelManager:
         try:
             strLocalizer = input_data["strLocalizer"]
             strIdCard = input_data["strIdCard"]
+
         except KeyError as ex:
             raise HotelManagementException("Input not found in file.") from ex
         if not self.VALIDATELOCALIZER(strLocalizer):
@@ -258,48 +259,50 @@ class HotelManager:
 
 
 
-            # Buscamos la reserva y preparamos los datos para ser guardados.
-            boolEncontrado = False
-            for hotel_reservation in lstListaDatos:
-                if hotel_reservation["HotelReservation__Localizer"] == strLocalizer:
-                    strLocalizer = hotel_reservation["HotelReservation__strLocalizer"]
-                    strIdCard = hotel_reservation["HotelReservation__strIdCard"]
-                    boolEncontrado = True
-                    break
-            if not boolEncontrado:
-                raise HotelManagementException("The hotel reservation has not been found.")
+        # Buscamos la reserva y preparamos los datos para ser guardados.
+        boolEncontrado = False
+        for hotel_reservation in lstListaDatos:
+            if hotel_reservation["HotelReservation__Localizer"] == strLocalizer:
+                strLocalizer = hotel_reservation["HotelReservation__strLocalizer"]
+                strIdCard = hotel_reservation["HotelReservation__strIdCard"]
+                intNumDays = hotel_reservation["HotelReservation__intNumDays"]
+                strRoomType = hotel_reservation["HotelReservation__strRoomType"]
+                boolEncontrado = True
+                break
+        if not boolEncontrado:
+            raise HotelManagementException("The hotel reservation has not been found.")
 
-            """AHORA CREAMOS UNA LLEGADA AL HOTEL"""
-            my_hotel_stay = HOTELSTAY(strLocalizer, strIdCard, intNumDays, strRoomType)
+        """AHORA CREAMOS UNA LLEGADA AL HOTEL"""
+        my_hotel_stay = HOTELSTAY(strLocalizer, strIdCard, intNumDays, strRoomType)
 
 
-            #A continuación creamos la ruta al archivo de almacenaje
-            strArchivoAlmacenaje = self.RUTAARCHIVOJSON()
-            strArchivoAlmacenaje += "HotelStays.json"
+        #A continuación creamos la ruta al archivo de almacenaje
+        strArchivoAlmacenaje = self.RUTAARCHIVOJSON()
+        strArchivoAlmacenaje += "HotelStays.json"
 
-            try:
-                #VOLVEMOS A LEER EL FICHERO Y CARGAMOS LOS CONTENIDOS EN LISTA DE DATOS
-                with open(strArchivoAlmacenaje, "r", encoding="utf-8", newline="") as file:
-                    lstListaDatos = json.load(file)
-            except FileNotFoundError:
-                #El fichero no ha sido encontrado
-                lstListaDatos = []
-            except json.JSONDecodeError as ex:
-                #Creamos una excepcion si no se puede decodificar el archivo
-                raise HotelManagementException("JSON Decode Error - Wrong JSON Format") from ex
+        try:
+            #VOLVEMOS A LEER EL FICHERO Y CARGAMOS LOS CONTENIDOS EN LISTA DE DATOS
+            with open(strArchivoAlmacenaje, "r", encoding="utf-8", newline="") as file:
+                lstListaDatos = json.load(file)
+        except FileNotFoundError:
+            #El fichero no ha sido encontrado
+            lstListaDatos = []
+        except json.JSONDecodeError as ex:
+            #Creamos una excepcion si no se puede decodificar el archivo
+            raise HotelManagementException("JSON Decode Error - Wrong JSON Format") from ex
 
-            lstListaDatos.append(my_hotel_stay.__dict__)
+        lstListaDatos.append(my_hotel_stay.__dict__)
 
-            try:
-                # Ahora abrimos el fichero JSON para escribir toda la infromación en el
-                with open(strArchivoAlmacenaje, "w", encoding="utf-8", newline="") as file:
-                    json.dump(lstListaDatos, file, indent=2)
-            except FileNotFoundError as ex:
-                #Lanzamos una Excepcion si no se ha encontrado
-                raise HotelManagementException("Invalid file or path to file") from ex
+        try:
+            # Ahora abrimos el fichero JSON para escribir toda la infromación en el
+            with open(strArchivoAlmacenaje, "w", encoding="utf-8", newline="") as file:
+                json.dump(lstListaDatos, file, indent=2)
+        except FileNotFoundError as ex:
+            #Lanzamos una Excepcion si no se ha encontrado
+            raise HotelManagementException("Invalid file or path to file") from ex
 
-            #DEVOLVEMOS LA LLAVE DE LA HABITACION DEL HOTEL
-            return my_hotel_stay.strRoomKey
+        #DEVOLVEMOS LA LLAVE DE LA HABITACION DEL HOTEL
+        return my_hotel_stay.strRoomKey
 
 
     """COMENZAMOS LA TERCERA FUNCION: CHECKOUT"""

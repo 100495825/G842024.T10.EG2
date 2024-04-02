@@ -11,7 +11,8 @@ class MyTestCase(unittest.TestCase):
         mi_manager = HotelManager()
         self.ruta_json = HotelManager.RUTAARCHIVOJSON()
         mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST1.json")
-        self.assertEqual(mi_roomKey, "#")
+        self.assertEqual(mi_roomKey, "6ebb8a1c790b3492164055397862500c")
+
 
     @freeze_time("2024-03-18")
     def test_nv1(self):
@@ -294,7 +295,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual("The Localizer is not valid.", ome.exception.message)
 
     @freeze_time("2024-03-18")
-    def test_nv35(self):
+    def test_nv36(self):
         mi_manager = HotelManager()
         self.ruta_json = HotelManager.RUTAARCHIVOJSON()
         with self.assertRaises(HotelManagementException) as ome:
