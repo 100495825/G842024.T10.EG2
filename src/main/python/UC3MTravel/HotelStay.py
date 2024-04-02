@@ -1,10 +1,9 @@
 ''' Class HotelStay (GE2.2) '''
-ºfrom datetime import datetime
-
+from datetime import datetime
 import hashlib
 
 class HOTELSTAY():
-    def __init__(self, strIdCard, strLocalizer, intNumdays, strRoomType):
+    def __init__(self, strIdCard, strLocalizer, intNumDays, strRoomType):
         self.__strAlg = "SHA-256"
         self.__strRoomType = strRoomType
         self.__strIdCard = strIdCard
@@ -13,7 +12,8 @@ class HOTELSTAY():
         self.__dateArrival = dateJustNow
         #timestamp is represented in seconds.miliseconds
         #to add the number of days we must express numdays in seconds
-        self.__dateDeparture = self.__dateArrival + (intNumdays * 24 * 60 * 60)
+        self.__dateDeparture = self.__dateArrival + (intNumDays * 24 * 60 * 60)
+        self.strRoomKey = hashlib.sha256(self.__SIGNATURESTRING().encode()).hexdigest()
 
     def __SIGNATURESTRING(self):
         """Composes the string to be used for generating the key for the room"""
