@@ -256,9 +256,9 @@ class HotelManager:
             raise HotelManagementException("JSON Decode Error - Wrong JSON Format.") from ex
 
 
-            """CAMBIAR A PARTIR DE AQUI"""
 
-            # Buscamos ela reserva y preparamos los datos para ser guardados.
+
+            # Buscamos la reserva y preparamos los datos para ser guardados.
             boolEncontrado = False
             for hotel_reservation in lstListaDatos:
                 if hotel_reservation["HotelReservation__Localizer"] == strLocalizer:
@@ -324,6 +324,16 @@ class HotelManager:
         except json.JSONDecodeError as ex:
             # Excepcion si ocurre algun error al decodificar el archivo
             raise HotelManagementException("JSON Decode Error - Wrong JSON Format") from ex
+
+            # Buscamos la llave y preparamos los datos para ser guardados.
+        boolFound = False
+        for hotel_reservation in lstListaDatos:
+            if hotel_reservation["HotelReservation__strRoomKey"] == strRoomKey:
+                strRoomKey = hotel_reservation["HotelReservation__strRoomKey"]
+                boolFound = True
+                break
+        if not boolFound:
+            raise HotelManagementException("The hotel room key has not been found.")
 
 
         #EN CASO DE ERROR BUSCANDO LA LLAVE DEL HOTEL, BUSCAMOS LA FECHA PREVISTA DE ENTREGA.
