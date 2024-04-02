@@ -10,7 +10,7 @@ class MyTestCase(unittest.TestCase):
     def test_v1(self):
         mi_manager = HotelManager()
         self.ruta_json = HotelManager.RUTAARCHIVOJSON()
-        mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST1.json")
+        mi_roomKey = mi_manager.GUESTARRIVAL("/Users/mariaromeromartin/PycharmProjects/G842024.T10.EG2/src/JSONfiles/TestsSegundaFuncion/TEST1.json")
         self.assertEqual(mi_roomKey, "6ebb8a1c790b3492164055397862500c")
 
 
