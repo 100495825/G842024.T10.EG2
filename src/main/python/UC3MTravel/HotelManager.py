@@ -223,8 +223,8 @@ class HotelManager:
             with open(ruta_archivo, "r", encoding="utf-8", newline="") as file:
                 input_data = json.load(file)
         except FileNotFoundError as ex:
-            #Lanzamos excepcion si no se encuentra el archivo
-            raise HotelManagementException("Input file not found.") from ex
+            #Lanzamos excepcion si no se encuentra
+            raise HotelManagementException("Input not found in file.") from ex
         except json.JSONDecodeError as ex:
             # Ocurre un error al decodificar el archivo
             raise HotelManagementException("JSON Decode Error - Wrong JSON Format.") from ex
@@ -232,7 +232,7 @@ class HotelManager:
             strLocalizer = input_data["strLocalizer"]
             strIdCard = input_data["strIdCard"]
         except KeyError as ex:
-            raise HotelManagementException("Invalid Keys in input File.") from ex
+            raise HotelManagementException("Input not found in file.") from ex
         if not self.VALIDATELOCALIZER(strLocalizer):
             raise HotelManagementException("The Localizer is not valid." )
         if not self.VALIDATE_ID(strIdCard):

@@ -35,7 +35,7 @@ class MyTestCase(unittest.TestCase):
         self.ruta_json = HotelManager.RUTAARCHIVOJSON()
         with self.assertRaises(HotelManagementException) as ome:
             mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST4.json")
-        self.assertEqual("Invalid Keys in input File.", ome.exception.message)
+        self.assertEqual("Input not found in file.", ome.exception.message)
 
     @freeze_time("2024-03-18")
     def test_nv4(self):
@@ -181,8 +181,125 @@ class MyTestCase(unittest.TestCase):
             mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST20.json")
         self.assertEqual("JSON Decode Error - Wrong JSON Format.", ome.exception.message)
 
+    @freeze_time("2024-03-18")
+    def test_nv22(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST21.json")
+        self.assertEqual("Input not found in file.", ome.exception.message)
 
+    @freeze_time("2024-03-18")
+    def test_nv23(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST22.json")
+        self.assertEqual("Input not found in file.", ome.exception.message)
 
+    @freeze_time("2024-03-18")
+    def test_nv24(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST23.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format.", ome.exception.message)
+
+    @freeze_time("2024-03-18")
+    def test_nv25(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST24.json")
+        self.assertEqual("Input not found in file.", ome.exception.message)
+
+    @freeze_time("2024-03-18")
+    def test_nv26(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST25.json")
+        self.assertEqual("The ID is not valid.", ome.exception.message)
+
+    @freeze_time("2024-03-18")
+    def test_nv27(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST26.json")
+        self.assertEqual("The ID is not valid.", ome.exception.message)
+
+    @freeze_time("2024-03-18")
+    def test_nv28(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST27.json")
+        self.assertEqual("The ID is not valid.", ome.exception.message)
+
+    @freeze_time("2024-03-18")
+    def test_nv29(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST28.json")
+        self.assertEqual("The ID is not valid.", ome.exception.message)
+
+    @freeze_time("2024-03-18")
+    def test_nv30(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST29.json")
+        self.assertEqual("The ID is not valid.", ome.exception.message)
+
+    @freeze_time("2024-03-18")
+    def test_nv31(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST30.json")
+        self.assertEqual("The ID is not valid.", ome.exception.message)
+
+    @freeze_time("2024-03-18")
+    def test_nv32(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST31.json")
+        self.assertEqual("The ID is not valid.", ome.exception.message)
+
+    @freeze_time("2024-03-18")
+    def test_nv33(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST32.json")
+        self.assertEqual("The Localizer is not valid.", ome.exception.message)
+
+    @freeze_time("2024-03-18")
+    def test_nv34(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST33.json")
+        self.assertEqual("The Localizer is not valid.", ome.exception.message)
+
+    @freeze_time("2024-03-18")
+    def test_nv35(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST34.json")
+        self.assertEqual("The Localizer is not valid.", ome.exception.message)
+
+    @freeze_time("2024-03-18")
+    def test_nv35(self):
+        mi_manager = HotelManager()
+        self.ruta_json = HotelManager.RUTAARCHIVOJSON()
+        with self.assertRaises(HotelManagementException) as ome:
+            mi_roomKey = mi_manager.GUESTARRIVAL(self.ruta_json + "TestsSegundaFuncion/TEST35.json")
+        self.assertEqual("The Localizer is not valid.", ome.exception.message)
 
 if __name__ == '__main__':
     unittest.main()
